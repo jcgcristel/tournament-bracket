@@ -3,7 +3,7 @@ const { Schema } = require("mongoose");
 const teamSchema = new Schema(
   {
     // Team properties
-    name: {
+    team_name: {
       type: String,
       required: true,
       trim: true,
