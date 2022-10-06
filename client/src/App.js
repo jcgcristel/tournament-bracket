@@ -7,6 +7,9 @@ import Footer from './components/Footer';
 
 // Pages
 import Home from './pages/Home';
+import HostedTournaments from './pages/HostedTournaments';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 // Allow Routing 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -31,6 +34,9 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/tournaments" element={<HostedTournaments />} />
+            <Route path="/login" element={<Login />}/>
+            <Route path="/signup" element={<Signup />}/>
           </Routes>
         </main>
         <Footer />

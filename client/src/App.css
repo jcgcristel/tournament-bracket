@@ -76,11 +76,14 @@ header a {
   color: var(--primary-colour);
 }
 /* HEADER Nav */
-nav a {
+nav {
+  margin: 10px;
+}
+.navLink {
   padding: 10px;
   border-radius: 15px;
 }
-nav a div {
+a .lineHighlight {
   visibility: hidden;
   position: relative;
   top: 20px;
@@ -88,10 +91,10 @@ nav a div {
   background-color: var(--primary-colour);
   border-radius: 20px;
 }
-nav a:hover {
+.navLink:hover {
   background-color: var(--primary-highlight-colour);
 }
-nav a:hover div {
+a:hover .lineHighlight {
   visibility: visible;
 }
 

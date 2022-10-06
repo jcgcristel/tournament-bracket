@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import $ from 'jquery';
 
 const Header = () => {  
@@ -14,12 +14,21 @@ const Header = () => {
             </Link>
             <nav className="center">
                 {/* Dashboard should only be displayed when logged in */}
-                <a href="/">DASHBOARD<div /></a>
+                <Link to="/tournaments">
+                    <a href="/" className="navLink">HOST</a><div className="lineHighlight" />
+                </Link>
                 {/* Login and Signup should only be displayed when not logged in*/}
-                <a href="/">LOGIN<div /></a>
-                <a href="/">SIGNUP<div /></a>
+                <Link to="/login">
+                    <a href="/" className="navLink">LOGIN</a><div className="lineHighlight" />
+                </Link>
+                <Link to="/signup">
+                    <a href="/" className="navLink">SIGNUP</a>
+                    <div className="lineHighlight" />
+                </Link>
                 {/* Logout should only be displayed when logged in */}
-                <a href="/">LOGOUT<div /></a>
+                <Link to="/">
+                    <a href="/" className="navLink">LOGOUT</a><div className="lineHighlight" />
+                </Link>
             </nav>
             {/* <div className="menu">
                 <button onClick={openMenu}>Menu</button>
