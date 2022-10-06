@@ -1,15 +1,25 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const teamSchema = new Schema(
-    {
-        // Team properties
+  {
+    // Team properties
+    name: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    {
-        toJSON: {
-            getters: true
-        }
-    }
+    tournament_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Tournament",
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
 );
 
-module.exports = teamSchema;
+const Team = model("Team", teamSchema);
 
+module.exports = Team;
