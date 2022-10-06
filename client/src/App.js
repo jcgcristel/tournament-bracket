@@ -1,4 +1,15 @@
+// Styling
 import './App.css';
+
+// Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+// Pages
+import Home from './pages/Home';
+
+// Allow Routing 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Server connection functions
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -15,11 +26,15 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <p>
-          Hello World
-        </p>
-      </div>
+      <Router>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />}/>
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
     </ApolloProvider>
   );
 }

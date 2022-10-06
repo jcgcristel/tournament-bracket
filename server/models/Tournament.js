@@ -11,6 +11,7 @@ const tournamentSchema = new Schema(
         }
     }
 );
+
  const Tournament = model('Tournament', tournamentSchema);
 
  module.exports = Tournament;
