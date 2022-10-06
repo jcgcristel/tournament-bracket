@@ -32,13 +32,8 @@ db.once("open", async () => {
 
     const createdTournament = await Tournament.create({
       tournament_name,
-      _id,
+      userId
     });
-
-    const updatedTournament = await Tournament.updateOne(
-      { _id: userId },
-      { $push: { thoughts: createdThought._id } }
-    );
 
     createdTournaments.push(createdTournament);
   }
@@ -53,7 +48,7 @@ db.once("open", async () => {
 
     const createdTeam = await Team.create({
       team_name,
-      tournament_id,
+      tournamentId,
     });
 
     createdTeams.push(createdTeam);
