@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+
+// Server connection functions
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
+// Initialize link to Server
+const httpLink = createHttpLink({ uri: '/graphql' });
+
+// Initialize client that will be used by the ReactDOM with connection to the Server
+const client = new ApolloClient({
+  link: httpLink, // Will likely need authentication
+  cache: new InMemoryCache()
+})
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <ApolloProvider client={client}>
+      <div className="App">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello World
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </div>
+    </ApolloProvider>
   );
 }
 
