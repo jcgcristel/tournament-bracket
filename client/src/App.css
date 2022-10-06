@@ -204,7 +204,7 @@ a:hover .lineHighlight {
   font-size: 1rem;
   display: inline;
 }
-#findTournament, #signin{
+#tournamentId, #findTournament, #signin{
   margin-top: 30px;
 }
 
