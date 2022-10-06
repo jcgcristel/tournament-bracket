@@ -1,8 +1,8 @@
-const Signup = () => {
+const Signin = () => {
     return (
         <main className="center-horizontal">
             <div className="container">
-                <h2>Sign Up</h2>
+                <h2>Sign In</h2>
                 <div className="line" />
                 <form>
                     <div className="input-group">
@@ -13,12 +13,8 @@ const Signup = () => {
                         <label htmlFor="password">PASSWORD</label>
                         <input type="password" id="password" name="password" placeholder="Password"></input>
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="passwordConfirm">CONFIRM PASSWORD</label>
-                        <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Password Confirm"></input>
-                    </div>
                     <div className="center-horizontal">
-                        <input type="submit" className="button" id="signin" value="Sign Up"></input>
+                        <input type="submit" className="button" id="signin" value="Sign In"></input>
                     </div>
                 </form>
             </div>
@@ -26,4 +22,4 @@ const Signup = () => {
     );
 }
 
-export default Signup;
+export default Signin;

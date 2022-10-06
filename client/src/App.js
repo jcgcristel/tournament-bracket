@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home';
 import HostedTournaments from './pages/HostedTournaments';
-import Login from './pages/Login';
+import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
 // Allow Routing 
@@ -31,14 +31,12 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Header />
-        <main>
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/tournaments" element={<HostedTournaments />} />
-            <Route path="/login" element={<Login />}/>
+            <Route path="/login" element={<Signin />}/>
             <Route path="/signup" element={<Signup />}/>
           </Routes>
-        </main>
         <Footer />
       </Router>
     </ApolloProvider>
