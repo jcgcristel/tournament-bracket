@@ -9,9 +9,10 @@ const resolvers = {
                 testQuery
             }
         */
-        testQuery: () => {
-            return "Hello World";
-        }
+            helloWorld: () => {
+                return 'Hello world!';
+              }
+
     },
 
     Mutation: {
@@ -31,6 +32,6 @@ const resolvers = {
             return test;
         }
     }
-}
+};
 
 module.exports = resolvers;
