@@ -26,11 +26,12 @@ db.once("open", async () => {
   const tournamentData = [];
 
   for (let i = 0; i < 10; i += 1) {
-    const tournament_name = faker.lorem.words(Math.round(Math.random()) + 1);
+    const name = faker.lorem.words(Math.round(Math.random()) + 1);
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username, _id: host_id } = createdUsers.ops[randomUserIndex];
+    const champion_id = '63408d6fcaf523fb60da4854';
 
-    tournamentData.push({ tournament_name, host_id });
+    tournamentData.push({ name, host_id, champion_id });
   }
 
   const createdTournaments = await Tournament.collection.insertMany(
