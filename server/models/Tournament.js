@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const tournamentSchema = new Schema(
   {
     // Tournament properties
-    tournament_name: {
+    name: {
       type: String,
       required: true,
       unique: true,
@@ -16,6 +16,7 @@ const tournamentSchema = new Schema(
     champion_id: {
       type: Schema.Types.ObjectId,
       ref: "Team",
+      required: false,
     },
   },
   {
