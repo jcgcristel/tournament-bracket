@@ -1,24 +1,21 @@
-const { User, Tournament } = require('../models');
+const { User, Tournament } = require("../models");
 
 const resolvers = {
-    Query: {
-        /* 
+  Query: {
+    /* 
             OPERATION EXAMPLE (Paste into GraphQL Operation):
-
             {
                 testQuery
             }
         */
-            helloWorld: () => {
-                return 'Hello world!';
-              }
-
+    testQuery: () => {
+      return "Hello World";
     },
+  },
 
-    Mutation: {
-        /* 
+  Mutation: {
+    /* 
             OPERATION EXAMPLE (Paste into GraphQL Operation):
-
             mutation testMutation($message: String!) {
                 testMutation(message: $message) {
                     message
@@ -26,12 +23,12 @@ const resolvers = {
                 }
             }
         */
-        testMutation: async (parent, { message }) => {
-            const test = { message: message };
+    testMutation: async (parent, { message }) => {
+      const test = { message: message };
 
-            return test;
-        }
-    }
+      return test;
+    },
+  },
 };
 
 module.exports = resolvers;

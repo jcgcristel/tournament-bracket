@@ -1,11 +1,12 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
-  type Query {
-    helloWorld: String
+  type Test {
+    message: String
   }
-
+  type Query {
+    testQuery: String
+  }
   type Mutation {
     testMutation(message: String): Test
   }
