@@ -1,17 +1,33 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const tournamentSchema = new Schema(
-    {
-        // Tournament properties
-
+  {
+    // Tournament properties
+    tournament_name: {
+      type: String,
+      required: "You need to name the tournament!",
+      minlength: 1,
+      maxlength: 100,
     },
-    {
-        toJSON: {
-            virtuals: true
-        }
-    }
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    teams: [teamSchema],
+    matches: [matchSchema]
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
 );
 
- const Tournament = model('Tournament', tournamentSchema);
+const Tournament = model("Tournament", tournamentSchema);
 
- module.exports = Tournament;
+module.exports = Tournament;
