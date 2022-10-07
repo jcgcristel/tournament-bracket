@@ -8,9 +8,9 @@ const resolvers = {
                 testQuery
             }
         */
-    testQuery: () => {
-      return "Hello World";
-    },
+            tournaments: async () => {
+              return Tournament.find().sort({ name: -1 });
+            }
   },
 
   Mutation: {
