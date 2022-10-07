@@ -13,7 +13,7 @@ db.once("open", async () => {
   // create user data
   const userData = [];
 
-  for (let i = 0; i < 10; i += 1) {
+  for (let i = 0; i < 5; i += 1) {
     const username = faker.internet.userName();
     const password = faker.internet.password();
 
@@ -22,39 +22,23 @@ db.once("open", async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
 
-  // create tournaments
-  let createdTournaments = [];
-  for (let i = 0; i < 10; i += 1) {
-    const tournament_name = faker.lorem.words(Math.round(Math.random() * 1) + 1);
+  // create tournament data
+  const tournamentData = [];
 
+  for (let i = 0; i < 10; i += 1) {
+    const tournament_name = faker.lorem.words(Math.round(Math.random()) + 1);
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+    const { username, _id: host_id } = createdUsers.ops[randomUserIndex];
 
-    const createdTournament = await Tournament.create({
-      tournament_name,
-      userId
-    });
-
-    createdTournaments.push(createdTournament);
+    tournamentData.push({ tournament_name, host_id });
   }
 
-  // create teams
-  let createdTeams = [];
-  for (let i = 0; i < 10; i += 1) {
-    const team_name = faker.lorem.words(Math.round(Math.random()) + 1);
+  const createdTournaments = await Tournament.collection.insertMany(
+    tournamentData
+  );
 
-    const randomTournamentIndex = Math.floor(Math.random() * createdTournaments.ops.length);
-    const { tournament_name, _id: tournamentId } = createdTournaments.ops[randomTournamentIndex];
-
-    const createdTeam = await Team.create({
-      team_name,
-      tournamentId,
-    });
-
-    createdTeams.push(createdTeam);
-  }
-
-
+  console.log(userData);
+  console.log(tournamentData);
 
   console.log("all done!");
   process.exit(0);
