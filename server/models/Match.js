@@ -9,11 +9,11 @@ const matchSchema = new Schema(
     },
     prev_match: {
       type: Schema.Types.ObjectId,
-      ref: this,
+      ref: "Match",
     },
     next_match: {
       type: Schema.Types.ObjectId,
-      ref: this,
+      ref: "Match",
     },
     winner: {
       type: String,
@@ -27,4 +27,4 @@ const matchSchema = new Schema(
   }
 );
 
-module.exports = Match;
+module.exports = matchSchema;

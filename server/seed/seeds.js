@@ -1,12 +1,10 @@
-const faker = require("faker");
+const faker = require('faker');
 
-const db = require("../config/connection");
+const db = require('../config/connection');
 
-const { Match, Team, Tournament, User } = require("../models");
+const { Tournament, User } = require('../models');
 
-db.once("open", async () => {
-  await Match.deleteMany({});
-  await Team.deleteMany({});
+db.once('open', async () => {
   await Tournament.deleteMany({});
   await User.deleteMany({});
 
@@ -22,25 +20,41 @@ db.once("open", async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
 
-  // create tournament data
-  const tournamentData = [];
-
+  // create tournaments
+  let createdTournaments = [];
   for (let i = 0; i < 10; i += 1) {
-    const name = faker.lorem.words(Math.round(Math.random()) + 1);
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: host_id } = createdUsers.ops[randomUserIndex];
-    const champion_id = '63408d6fcaf523fb60da4854';
+    const tournament_name = faker.lorem.words(Math.round(Math.random() * 1) + 1);
 
-    tournamentData.push({ name, host_id, champion_id });
+    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+
+    const createdTournament = await Tournament.create({ tournament_name, username });
+
+    const updatedUser = await User.updateOne(
+      { _id: userId },
+      { $push: { tournaments: createdTournament._id } }
+    );
+
+    createdTournaments.push(createdTournament);
   }
 
-  const createdTournaments = await Tournament.collection.insertMany(
-    tournamentData
-  );
+  // create teams
+  // for (let i = 0; i < 20; i += 1) {
+  //   const team_name = faker.lorem.words(Math.round(Math.random() * 1) + 1);
 
-  console.log(userData);
-  console.log(tournamentData);
+  //   const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+  //   const { username } = createdUsers.ops[randomUserIndex];
 
-  console.log("all done!");
+  //   const randomThoughtIndex = Math.floor(Math.random() * createdThoughts.length);
+  //   const { _id: thoughtId } = createdThoughts[randomThoughtIndex];
+
+  //   await Thought.updateOne(
+  //     { _id: thoughtId },
+  //     { $push: { reactions: { reactionBody, username } } },
+  //     { runValidators: true }
+  //   );
+  // }
+
+  console.log('all done!');
   process.exit(0);
 });

@@ -1,4 +1,7 @@
 const { Schema, model } = require("mongoose");
+const teamSchema = require('./Team');
+const matchSchema = require('./Match');
+const dateFormat = require('../utils/dateFormat');
 
 const tournamentSchema = new Schema(
   {
