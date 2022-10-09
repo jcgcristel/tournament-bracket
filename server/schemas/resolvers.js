@@ -76,6 +76,19 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+    addTeam: async (parent, { tournamentId, team_name }, context) => {
+      if (context.user) {
+        const updatedTournament = await Tournament.findOneAndUpdate(
+          { _id: tournamentId },
+          { $push: { teams: { team_name, username: context.user.username } } },
+          { new: true, runValidators: true }
+        );
+    
+        return updatedTournament;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
 };
 
