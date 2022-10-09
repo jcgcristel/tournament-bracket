@@ -36,6 +36,10 @@ const typeDefs = gql`
     tournaments(username: String): [Tournament]
     tournament(_id: ID!): Tournament
   }
+  type Mutation {
+    login(username: String!, password: String!): User
+    addUser(username: String!, password: String!): User
+  }
 `;
 
 // export the typeDefs
