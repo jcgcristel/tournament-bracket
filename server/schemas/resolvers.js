@@ -7,13 +7,13 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('tournaments');
-    
+          .select("-__v -password")
+          .populate("tournaments");
+
         return userData;
       }
-    
-      throw new AuthenticationError('Not logged in');
+
+      throw new AuthenticationError("Not logged in");
     },
     // get all tournaments
     tournaments: async (parent, { username }) => {
@@ -57,6 +57,24 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    addTournament: async (parent, args, context) => {
+      if (context.user) {
+        const tournament = await Tournament.create({
+          ...args,
+          username: context.user.username,
+        });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { tournaments: tournament._id } },
+          { new: true }
+        );
+
+        return tournament;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
