@@ -39,21 +39,21 @@ db.once('open', async () => {
   }
 
   // create teams
-  // for (let i = 0; i < 20; i += 1) {
-  //   const team_name = faker.lorem.words(Math.round(Math.random() * 1) + 1);
+  for (let i = 0; i < 100; i += 1) {
+    const team_name = faker.lorem.words(Math.round(Math.random() * 1) + 1);
 
-  //   const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-  //   const { username } = createdUsers.ops[randomUserIndex];
+    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+    const { username } = createdUsers.ops[randomUserIndex];
 
-  //   const randomThoughtIndex = Math.floor(Math.random() * createdThoughts.length);
-  //   const { _id: thoughtId } = createdThoughts[randomThoughtIndex];
+    const randomTournamentIndex = Math.floor(Math.random() * createdTournaments.length);
+    const { _id: tournamentId } = createdTournaments[randomTournamentIndex];
 
-  //   await Thought.updateOne(
-  //     { _id: thoughtId },
-  //     { $push: { reactions: { reactionBody, username } } },
-  //     { runValidators: true }
-  //   );
-  // }
+    await Tournament.updateOne(
+      { _id: tournamentId },
+      { $push: { teams: { team_name, username } } },
+      { runValidators: true }
+    );
+  }
 
   console.log('all done!');
   process.exit(0);

@@ -11,11 +11,19 @@ const typeDefs = gql`
     teamsCount: Int
     matchCount: Int
     teams: [Team]
+    matches: [Match]
   }
   type Team {
     _id: ID
     team_name: String
-    tournament_name: String
+    username: String
+  }
+  type Match {
+    _id: ID
+    username: String
+    winner: String
+    prev_match: [Match]
+    next_match: [Match]
   }
   type User {
     _id: ID

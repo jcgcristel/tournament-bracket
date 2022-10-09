@@ -9,7 +9,7 @@ const teamSchema = new Schema(
       minlength: 1,
       maxlength: 100,
     },
-    tournament_name: {
+    username: {
       type: String,
       required: true,
     },
