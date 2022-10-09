@@ -3,8 +3,16 @@ const { gql } = require("apollo-server-express");
 
 // create our typeDefs
 const typeDefs = gql`
+  type Tournament {
+    _id: ID
+    tournament_name: String
+    createdAt: String
+    username: String
+    teamsCount: Int
+    matchCount: Int
+  }
   type Query {
-    helloWorld: String
+    tournaments: [Tournament]
   }
 `;
 

@@ -31,6 +31,15 @@ const tournamentSchema = new Schema(
   }
 );
 
+
+tournamentSchema.virtual('teamsCount').get(function() {
+  return this.teams.length;
+});
+
+tournamentSchema.virtual('matchCount').get(function() {
+  return this.matches.length;
+});
+
 const Tournament = model("Tournament", tournamentSchema);
 
 module.exports = Tournament;
