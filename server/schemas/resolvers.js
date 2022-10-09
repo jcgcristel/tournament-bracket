@@ -2,9 +2,10 @@ const { User, Tournament } = require('../models');
 
 const resolvers = {
   Query: {
-    tournaments: async () => {
-      return Tournament.find().sort({ createdAt: -1 });
-    }
+    tournaments: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Tournament.find(params).sort({ createdAt: -1 });
+    },
   }
 };
   
