@@ -17,8 +17,16 @@ const typeDefs = gql`
     team_name: String
     tournament_name: String
   }
+  type User {
+    _id: ID
+    username: String
+    tournaments: [Tournament]
+  }
   type Query {
+    users: [User]
+    user(username: String!): User
     tournaments(username: String): [Tournament]
+    tournament(_id: ID!): Tournament
   }
 `;
 
