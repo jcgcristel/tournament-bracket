@@ -69,80 +69,85 @@ class Tournament {
 // Added "type": "module" to package.json to test funcion quickly
 
 // EXAMPLE USE OF TOURNAMENT CLASS:
-let tournament = new Tournament('test', 'user1', 8, [['team1', 'team2'], ['team3', 'team4'], ['team5', 'team6'], ['team7', 'team8']]);
+// let tournament = new Tournament('test', 'user1', 8, [['team1', 'team2'], ['team3', 'team4'], ['team5', 'team6'], ['team7', 'team8']]);
 
-tournament.generateMatches();
-tournament.sortMatches();
-tournament.setFirstRoundTeamMatchups();
-console.log(tournament);
+// tournament.generateMatches();
+// tournament.sortMatches();
+// tournament.setFirstRoundTeamMatchups();
+// console.log(tournament);
 
 // Output:
                   
 // Tournament {
 //     tournamentName: 'test',
-//     tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//     tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //     username: 'user1',
 //     tournamentSize: 8,
-//     teams: [ 'team1', 'team2' ],
+//     teams: [
+//       [ 'team1', 'team2' ],
+//       [ 'team3', 'team4' ],
+//       [ 'team5', 'team6' ],
+//       [ 'team7', 'team8' ]
+//     ],
 //     matches: [
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 1,
-//         matchId: '60bd79cb-519c-439f-a642-a16db143cfe0',
-//         teams: [],
-//         nextMatch: 'c56f1271-b3a4-4606-a97d-12879fa00d70',
+//         matchId: '3bee6a08-94b4-4627-8f26-2d587173ae5e',
+//         teams: [Array],
+//         nextMatch: 'd8412198-1735-453e-a288-0bff1b1266ee',
 //         winner: '',
 //         matchNumber: 0
 //       },
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 1,
-//         matchId: 'eec83db5-b1d5-4dd8-9745-13708335a6e0',
-//         teams: [],
-//         nextMatch: 'c56f1271-b3a4-4606-a97d-12879fa00d70',
+//         matchId: '545376f4-1fa2-4981-9c28-274d061e6395',
+//         teams: [Array],
+//         nextMatch: 'd8412198-1735-453e-a288-0bff1b1266ee',
 //         winner: '',
 //         matchNumber: 1
 //       },
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 1,
-//         matchId: '192e889a-fd70-4419-93c4-874227e8419c',
-//         teams: [],
-//         nextMatch: '7a9cbe7c-20b0-4ad8-bc7c-56125ee1b5c6',
+//         matchId: '5a326841-cae5-46c9-9235-53a1eb53196a',
+//         teams: [Array],
+//         nextMatch: 'e3b7e21d-5a0e-421d-a401-11be2ae9c70a',
 //         winner: '',
 //         matchNumber: 2
 //       },
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 1,
-//         matchId: 'a68f0f4a-acfa-4b26-a5b2-a598c4fa13ad',
-//         teams: [],
-//         nextMatch: '7a9cbe7c-20b0-4ad8-bc7c-56125ee1b5c6',
+//         matchId: 'fab9b64c-ab61-4a12-92f3-c33296096814',
+//         teams: [Array],
+//         nextMatch: 'e3b7e21d-5a0e-421d-a401-11be2ae9c70a',
 //         winner: '',
 //         matchNumber: 3
 //       },
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 2,
-//         matchId: 'c56f1271-b3a4-4606-a97d-12879fa00d70',
+//         matchId: 'd8412198-1735-453e-a288-0bff1b1266ee',
 //         teams: [],
-//         nextMatch: '4b9a0566-b19e-4408-8b4a-74d068c1d5e8',
+//         nextMatch: 'b387c77f-df78-41cf-8a8c-c77302c34aa3',
 //         winner: '',
 //         matchNumber: 4
 //       },
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 2,
-//         matchId: '7a9cbe7c-20b0-4ad8-bc7c-56125ee1b5c6',
+//         matchId: 'e3b7e21d-5a0e-421d-a401-11be2ae9c70a',
 //         teams: [],
-//         nextMatch: '4b9a0566-b19e-4408-8b4a-74d068c1d5e8',
+//         nextMatch: 'b387c77f-df78-41cf-8a8c-c77302c34aa3',
 //         winner: '',
 //         matchNumber: 5
 //       },
 //       Match {
-//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         tournamentId: '67eac20d-a94b-4f7a-a05f-f319e71da0da',
 //         round: 3,
-//         matchId: '4b9a0566-b19e-4408-8b4a-74d068c1d5e8',
+//         matchId: 'b387c77f-df78-41cf-8a8c-c77302c34aa3',
 //         teams: [],
 //         nextMatch: '',
 //         winner: '',
