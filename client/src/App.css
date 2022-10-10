@@ -1,38 +1,245 @@
-.App {
+/* Remove Default Styling */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+:root {
+  /* Backgorund Colours */
+  --primary-bg-colour: #0f1519;
+  --secondary-bg-colour: #111111;
+  /* Selection and Highlight Colours */
+  --primary-selection-colour:#292d31;
+  --primary-highlight-colour: #383e42;
+  --secondary-selection-colour: #282828;
+  --secondary-highlight-colour: #333333;
+  /* Accent Colours */
+  --primary-colour: #00c8c8;
+  --secondary-colour: #c69d57;
+
+  --primary-font: 'Nunito','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* REACT */
+
+
+/* ELEMENT STYLING */
+/* ELEMENT STYLING sections */
+html, body {
+  width: 100vw;
+  max-width: 100%;
+  background-color: var(--primary-bg-colour);
+  /* Font-Styling */
+  color: white;
+  font-family: var(--primary-font);
+}
+header {
+  justify-content: space-between;
+  height: 5rem;
+  width: 100%;
+  background-color: var(--secondary-bg-colour);
+  border-bottom: 2px solid var(--secondary-selection-colour);
+}
+footer {
+  justify-content: center;
+  height: 5rem;
+  width: 100%;
+  background-color: black;
+  border-top: 2px solid var(--primary-selection-colour);
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+}
+main {
+  width: 100%;
+}
+form {
+  width: 100%;
+  font-family: var(--primary-font);
+  /* display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; */
+}
+label, input {
+  padding: 10px;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+}
+label {
+  font-size: 1.25rem;
+}
+.input-group {
+  width: 100%;
+}
+.input-group label {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  font-size: 1rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+
+/* GENERAL CLASSES */
+.center-vertical {
+  display: flex;
+  align-items: center;
+}
+.center-horizontal {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.center-text {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.line {
+  margin-top: 10px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-selection-colour);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  padding: 10px;
+  width: 50%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.container-header {
+  padding: 20px;
+  justify-content: space-between;
+}
+button, .button {
+  width: auto;
+  color: var(--secondary-colour); 
+  background-color: var(--primary-selection-colour);
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 1rem;
+}
+button:hover, .button:hover {
+  cursor: pointer;
+  background-color: var(--primary-highlight-colour);
+}
+
+
+/* HEADER */
+header a {
   color: white;
+  text-decoration: none;
+}
+/* HEADER Title */
+#logo {
+  width: 40px;
+  height: 40px;
+}
+.title {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+.title h1 {
+  font-size: 1rem;
+}
+.title-text {
+  padding-left: 5px;
+}
+.title:hover #logo {
+  filter: sepia(98%) saturate(2040%) hue-rotate(139deg) brightness(75%) contrast(103%);
+}
+.title:hover h1 {
+  color: var(--primary-colour);
+}
+/* HEADER Nav */
+nav {
+  margin: 10px;
+}
+.navLink {
+  padding: 10px;
+  border-radius: 15px;
+}
+a .lineHighlight {
+  visibility: hidden;
+  position: relative;
+  top: 20px;
+  height: 3px;
+  background-color: var(--primary-colour);
+  border-radius: 20px;
+}
+.navLink:hover {
+  background-color: var(--primary-highlight-colour);
+}
+a:hover .lineHighlight {
+  visibility: visible;
 }
 
-.App-link {
-  color: #61dafb;
+/* MAIN BODY */
+/* Tournament */
+.card {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  padding-left: 30px;
+  border-radius: 10px;
+  background-color: var(--primary-selection-colour);
+}
+.card:hover {
+  cursor: pointer;
+  background-color: var(--primary-highlight-colour);
+}
+#addTournament {
+  font-size: 1rem;
+  display: inline;
+}
+#tournamentId, #findTournament, #signin{
+  margin-top: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+
+/* FOOTER */
+
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+  
+}
+
+/* Tablets */
+@media screen and (max-width: 1279px) and (min-width: 769px) {
+
+}
+
+/* Larger Phones */
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .title-text {
+    display: inline;
   }
-  to {
-    transform: rotate(360deg);
+  .container {
+    width: 80%;
+  }
+}
+
+/* Phones */
+@media screen and (max-width: 480px){
+  .title-text {
+    display: none;
+  }
+  .container {
+    width: 100%;
   }
 }

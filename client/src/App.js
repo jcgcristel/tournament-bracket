@@ -1,4 +1,18 @@
+// Styling
 import './App.css';
+
+// Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+// Pages
+import Home from './pages/Home';
+import HostedTournaments from './pages/HostedTournaments';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+
+// Allow Routing 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Server connection functions
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -15,11 +29,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <p>
-          Hello World
-        </p>
-      </div>
+      <Router>
+        <Header />
+          <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/tournaments" element={<HostedTournaments />} />
+            <Route path="/login" element={<Signin />}/>
+            <Route path="/signup" element={<Signup />}/>
+          </Routes>
+        <Footer />
+      </Router>
     </ApolloProvider>
   );
 }
