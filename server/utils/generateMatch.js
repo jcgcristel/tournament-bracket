@@ -9,6 +9,7 @@ class Match {
         this.matchId = uuidv4(),
         this.teams = [],
         this.nextMatch = nextMatch
+        this.winner = ''
         // this.previousMatches = previousMatch
     }
 
