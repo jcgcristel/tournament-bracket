@@ -1,4 +1,8 @@
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from "../utils/mutations";
+
+import Auth from '../utils/auth';
 
 const Signin = (props) => {
     const [inputState, setInputState] = useState({username: '', password: ''})
@@ -13,11 +17,11 @@ const Signin = (props) => {
         event.preventDefault();
     
         try {
-          const { data } = await addUser({
+          const { data } = await login({
             variables: { ...inputState },
           });
     
-          Auth.login(data.addUser.token);
+          Auth.login(data.login.token);
         } catch (e) {
           console.error(e);
         }
