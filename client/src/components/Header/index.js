@@ -3,6 +3,11 @@ import $ from 'jquery';
 import Auth from '../../utils/auth';
 
 const Header = () => {
+    const logout = event => {
+        event.preventDefault();
+        Auth.logout();
+      };
+
     return (
         <header className="center-vertical">
             <Link to="/">
@@ -23,7 +28,7 @@ const Header = () => {
                 {Auth.loggedIn() ? (
                     <>
                         <Link to="/">
-                            <a href="/" className="navLink">LOGOUT</a><div className="lineHighlight" />
+                            <a href="/" onClick={logout} className="navLink">LOGOUT</a><div className="lineHighlight" />
                         </Link>
                     </>
                 ) : (
