@@ -52,15 +52,28 @@ class Tournament {
             this.matches[i].matchNumber = i;
         }
     }
+
+    // Set teams for first round matchups before storing matches and tournament in DB
+    setFirstRoundTeamMatchups() {
+        for (let i = 0; i < this.matches.length; i ++) {
+            if (this.matches[i].round === 1) {
+                this.matches[i].teams = this.teams[i];
+            }
+            else {
+                break;
+            }
+        }
+    }
 }
 
 // Added "type": "module" to package.json to test funcion quickly
 
 // EXAMPLE USE OF TOURNAMENT CLASS:
-let tournament = new Tournament('test', 'user1', 8, ['team1', 'team2']);
+let tournament = new Tournament('test', 'user1', 8, [['team1', 'team2'], ['team3', 'team4'], ['team5', 'team6'], ['team7', 'team8']]);
 
 tournament.generateMatches();
 tournament.sortMatches();
+tournament.setFirstRoundTeamMatchups();
 console.log(tournament);
 
 // Output:
