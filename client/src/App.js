@@ -16,15 +16,26 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Server connection functions
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 // Initialize link to Server
 const httpLink = createHttpLink({ uri: '/graphql' });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 // Initialize client that will be used by the ReactDOM with connection to the Server
 const client = new ApolloClient({
-  link: httpLink, // Will likely need authentication
-  cache: new InMemoryCache()
-})
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
