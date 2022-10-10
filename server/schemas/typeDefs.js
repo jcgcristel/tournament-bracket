@@ -30,12 +30,19 @@ const typeDefs = gql`
     username: String
     tournaments: [Tournament]
   }
+  type Auth {
+    token: ID!
+    user: User
+  }
   type Query {
     users: [User]
     user(username: String!): User
     tournaments(username: String): [Tournament]
     tournament(_id: ID!): Tournament
-    login(email: String!, password: String!): Auth
+  }
+
+  type Mutation {
+    login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!): Auth
   }
 `;

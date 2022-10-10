@@ -1,7 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import $ from 'jquery';
+import Auth from '../../utils/auth';
 
-const Header = () => {  
+const Header = () => {
     return (
         <header className="center-vertical">
             <Link to="/">
@@ -18,17 +19,28 @@ const Header = () => {
                     <a href="/" className="navLink">HOST</a><div className="lineHighlight" />
                 </Link>
                 {/* Login and Signup should only be displayed when not logged in*/}
-                <Link to="/login">
-                    <a href="/" className="navLink">SIGN IN</a><div className="lineHighlight" />
-                </Link>
-                <Link to="/signup">
-                    <a href="/" className="navLink">SIGN UP</a>
-                    <div className="lineHighlight" />
-                </Link>
-                {/* Logout should only be displayed when logged in */}
-                <Link to="/">
-                    <a href="/" className="navLink">LOGOUT</a><div className="lineHighlight" />
-                </Link>
+
+                {Auth.loggedIn() ? (
+                    <>
+                        <Link to="/">
+                            <a href="/" className="navLink">LOGOUT</a><div className="lineHighlight" />
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link to="/login">
+                            <a href="/" className="navLink">SIGN IN</a><div className="lineHighlight" />
+                        </Link>
+                        <Link to="/signup">
+                            <a href="/" className="navLink">SIGN UP</a>
+                            <div className="lineHighlight" />
+                        </Link>
+                    </>
+                )
+
+
+                }
+
             </nav>
             {/* <div className="menu">
                 <button onClick={openMenu}>Menu</button>
