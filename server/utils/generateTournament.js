@@ -48,6 +48,9 @@ class Tournament {
         this.matches.sort(function(a,b) {
             return a.round - b.round || a.nextMatch - b.nextMatch;
         })
+        for (let i = 0; i < this.matches.length; i ++) {
+            this.matches[i].matchNumber = i;
+        }
     }
 }
 
@@ -63,70 +66,77 @@ console.log(tournament);
 // Output:
                   
 // Tournament {
-// tournamentName: 'test',
-// tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-// username: 'user1',
-// tournamentSize: 8,
-// teams: [ 'team1', 'team2' ],
-// matches: [
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 3,
-//     matchId: '8133d99d-32a0-47d9-99e8-0f1f98e2860b',
-//     teams: [],
-//     nextMatch: '',
-//     winner: ''
-//     },
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 2,
-//     matchId: '492dea26-23e3-4d6c-9134-f53d8a7c3834',
-//     teams: [],
-//     nextMatch: '8133d99d-32a0-47d9-99e8-0f1f98e2860b',
-//     winner: ''
-//     },
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 1,
-//     matchId: '36c6b175-a51c-402c-9a92-c4af2b3b43a1',
-//     teams: [],
-//     nextMatch: '492dea26-23e3-4d6c-9134-f53d8a7c3834',
-//     winner: ''
-//     },
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 1,
-//     matchId: 'bb18804c-f33c-4450-a7e3-e278147e893e',
-//     teams: [],
-//     nextMatch: '492dea26-23e3-4d6c-9134-f53d8a7c3834',
-//     winner: ''
-//     },
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 2,
-//     matchId: 'b2e193a2-1936-4d90-b24c-1190ba23e6fa',
-//     teams: [],
-//     nextMatch: '8133d99d-32a0-47d9-99e8-0f1f98e2860b',
-//     winner: ''
-//     },
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 1,
-//     matchId: 'c41d2516-e8a6-4f6f-9778-addc5fcc253b',
-//     teams: [],
-//     nextMatch: 'b2e193a2-1936-4d90-b24c-1190ba23e6fa',
-//     winner: ''
-//     },
-//     Match {
-//     tournamentId: 'ac5f7dca-66d0-4607-ad1e-d75ef88089e0',
-//     round: 1,
-//     matchId: '976a3e7f-ca69-474c-84c7-711ffbe232a6',
-//     teams: [],
-//     nextMatch: 'b2e193a2-1936-4d90-b24c-1190ba23e6fa',
-//     winner: ''
-//     }
-// ],
-// finalRound: 3
-// }
+//     tournamentName: 'test',
+//     tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//     username: 'user1',
+//     tournamentSize: 8,
+//     teams: [ 'team1', 'team2' ],
+//     matches: [
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 1,
+//         matchId: '60bd79cb-519c-439f-a642-a16db143cfe0',
+//         teams: [],
+//         nextMatch: 'c56f1271-b3a4-4606-a97d-12879fa00d70',
+//         winner: '',
+//         matchNumber: 0
+//       },
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 1,
+//         matchId: 'eec83db5-b1d5-4dd8-9745-13708335a6e0',
+//         teams: [],
+//         nextMatch: 'c56f1271-b3a4-4606-a97d-12879fa00d70',
+//         winner: '',
+//         matchNumber: 1
+//       },
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 1,
+//         matchId: '192e889a-fd70-4419-93c4-874227e8419c',
+//         teams: [],
+//         nextMatch: '7a9cbe7c-20b0-4ad8-bc7c-56125ee1b5c6',
+//         winner: '',
+//         matchNumber: 2
+//       },
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 1,
+//         matchId: 'a68f0f4a-acfa-4b26-a5b2-a598c4fa13ad',
+//         teams: [],
+//         nextMatch: '7a9cbe7c-20b0-4ad8-bc7c-56125ee1b5c6',
+//         winner: '',
+//         matchNumber: 3
+//       },
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 2,
+//         matchId: 'c56f1271-b3a4-4606-a97d-12879fa00d70',
+//         teams: [],
+//         nextMatch: '4b9a0566-b19e-4408-8b4a-74d068c1d5e8',
+//         winner: '',
+//         matchNumber: 4
+//       },
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 2,
+//         matchId: '7a9cbe7c-20b0-4ad8-bc7c-56125ee1b5c6',
+//         teams: [],
+//         nextMatch: '4b9a0566-b19e-4408-8b4a-74d068c1d5e8',
+//         winner: '',
+//         matchNumber: 5
+//       },
+//       Match {
+//         tournamentId: '4c93a3bf-a7b7-4d1a-b5c2-77c0635b4200',
+//         round: 3,
+//         matchId: '4b9a0566-b19e-4408-8b4a-74d068c1d5e8',
+//         teams: [],
+//         nextMatch: '',
+//         winner: '',
+//         matchNumber: 6
+//       }
+//     ],
+//     finalRound: 3
+//   }
 
 export default Tournament;

@@ -10,6 +10,7 @@ class Match {
         this.teams = [],
         this.nextMatch = nextMatch
         this.winner = ''
+        this.matchNumber;
         // this.previousMatches = previousMatch
     }
 
