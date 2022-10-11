@@ -91,6 +91,9 @@ h2 {
 h3 {
   font-size: 1.25rem;
 }
+a {
+  text-decoration: none;
+}
 
 /* GENERAL CLASSES */
 .container {
@@ -143,6 +146,7 @@ button, .button {
   border-radius: 15px;
   padding: 15px;
   font-size: 1rem;
+  text-decoration: none;
 }
 button:hover, .button:hover {
   cursor: pointer;

@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import HostedTournaments from './pages/HostedTournaments';
 import Tournament from './pages/Tournament';
+import CreateTournament from './pages/CreateTournament';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
@@ -17,15 +18,26 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Server connection functions
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 // Initialize link to Server
 const httpLink = createHttpLink({ uri: '/graphql' });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 // Initialize client that will be used by the ReactDOM with connection to the Server
 const client = new ApolloClient({
-  link: httpLink, // Will likely need authentication
-  cache: new InMemoryCache()
-})
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
@@ -36,6 +48,7 @@ function App() {
             <Header />
               <Routes>
                 <Route path="/" element={<Home />}/>
+                <Route path="/create_tournament" element={<CreateTournament />}/>
                 <Route path="/tournament">
                   <Route path="" element={<HostedTournaments />}/>
                   <Route path=":id" element={<Tournament />}/>
