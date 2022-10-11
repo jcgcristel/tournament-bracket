@@ -8,8 +8,6 @@ import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home';
 import HostedTournaments from './pages/HostedTournaments';
-import SingleTournament from './pages/SingleTournament';
-import CreateTournament from './pages/CreateTournament';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
@@ -49,8 +47,7 @@ function App() {
             <Route path="/tournaments" element={<HostedTournaments />} />
             <Route path="/login" element={<Signin />}/>
             <Route path="/signup" element={<Signup />}/>
-            <Route path="/create_tournament" element={<CreateTournament />} />
-            <Route path="/tournament/:id" element={<SingleTournament />} /> 
+
               
           </Routes>
         <Footer />
