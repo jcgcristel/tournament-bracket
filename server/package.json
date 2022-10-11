@@ -1,6 +1,7 @@
 {
   "name": "tournament-bracket-server",
   "version": "1.0.0",
+  "type":"module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -17,7 +18,8 @@
     "faker": "^4.1.0",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.9"
+    "mongoose": "^5.9.9",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
