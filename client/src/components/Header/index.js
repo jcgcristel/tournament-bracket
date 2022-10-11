@@ -21,13 +21,14 @@ const Header = () => {
             </Link>
             <nav className="center-vertical">
                 {/* Dashboard should only be displayed when logged in */}
-                <Link to="/tournament" className="navLink">
-                    HOST<div className="lineHighlight" />
-                </Link>
+               
                 {/* Login and Signup should only be displayed when not logged in*/}
 
                 {Auth.loggedIn() ? (
                     <>
+                        <Link to="/tournament" className="navLink">
+                            HOST<div className="lineHighlight" />
+                        </Link>
                         <Link to="/" onClick={logout} className="navLink">
                             LOGOUT<div className="lineHighlight" />
                         </Link>
