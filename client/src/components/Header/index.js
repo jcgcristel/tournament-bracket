@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import Auth from '../../utils/auth';
 
@@ -9,6 +9,7 @@ const Header = () => {
       };
 
     return (
+        
         <header className="center-vertical">
             <Link to="/">
                 <div className="title">
@@ -20,25 +21,25 @@ const Header = () => {
             </Link>
             <nav className="center-vertical">
                 {/* Dashboard should only be displayed when logged in */}
-                <Link to="/tournaments">
-                    <a href="/" className="navLink">HOST</a><div className="lineHighlight" />
-                </Link>
+               
                 {/* Login and Signup should only be displayed when not logged in*/}
 
                 {Auth.loggedIn() ? (
                     <>
-                        <Link to="/">
-                            <a href="/" onClick={logout} className="navLink">LOGOUT</a><div className="lineHighlight" />
+                        <Link to="/tournament" className="navLink">
+                            HOST<div className="lineHighlight" />
+                        </Link>
+                        <Link to="/" onClick={logout} className="navLink">
+                            LOGOUT<div className="lineHighlight" />
                         </Link>
                     </>
                 ) : (
                     <>
-                        <Link to="/login">
-                            <a href="/" className="navLink">SIGN IN</a><div className="lineHighlight" />
+                        <Link to="/login" className="navLink">
+                            SIGN IN<div className="lineHighlight" />
                         </Link>
-                        <Link to="/signup">
-                            <a href="/" className="navLink">SIGN UP</a>
-                            <div className="lineHighlight" />
+                        <Link to="/signup" className="navLink">
+                            SIGN UP<div className="lineHighlight" />
                         </Link>
                     </>
                 )
@@ -47,9 +48,6 @@ const Header = () => {
                 }
 
             </nav>
-            {/* <div className="menu">
-                <button onClick={openMenu}>Menu</button>
-            </div> */}
         </header>
     );
 }

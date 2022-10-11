@@ -91,8 +91,36 @@ h2 {
 h3 {
   font-size: 1.25rem;
 }
+a {
+  text-decoration: none;
+}
 
 /* GENERAL CLASSES */
+.container {
+  padding: 10px;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tournament-container {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container-header {
+  padding: 20px;
+  justify-content: space-between;
+}
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+.content-container {
+  padding-bottom: 5rem;
+}
 .center-vertical {
   display: flex;
   align-items: center;
@@ -110,17 +138,6 @@ h3 {
   width: 100%;
   height: 2px;
   background-color: var(--primary-selection-colour);
-}
-.container {
-  padding: 10px;
-  width: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.container-header {
-  padding: 20px;
-  justify-content: space-between;
 }
 button, .button {
   width: auto;
@@ -208,6 +225,55 @@ a:hover .lineHighlight {
 #tournamentId, #findTournament, #signin{
   margin-top: 30px;
 }
+.tournament-bracket {
+  display: flex;
+  width: 100%;
+  margin: 20px; 
+  overflow: scroll;
+  border-radius: 10px;
+  background-color: var(--secondary-selection-colour)
+}
+.tournament-bracket::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--secondary-bg-colour)
+}
+.tournament-bracket::-webkit-scrollbar-corner {
+  background-color: var(--secondary-bg-colour);
+}
+.tournament-bracket::-webkit-scrollbar-button {
+  width: 0.5rem;
+
+  border-radius: 10px;
+}
+.tournament-bracket::-webkit-scrollbar-thumb {
+  background: var(--primary-selection-colour);
+  border-radius: 10px;
+}
+.team {
+  cursor: pointer;
+  border-radius: 10px;
+  width: 200px;
+  text-overflow: ellipsis;
+  padding: 10px;
+  margin: 10px;
+  background-color: var(--primary-highlight-colour)
+}
+.team:hover {
+  background-color: var(--secondary-colour);
+}
+.match-set {
+  border: 1px black solid;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.match {
+  margin: 25px;
+}
+
+
 
 
 

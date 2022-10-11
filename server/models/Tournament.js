@@ -31,7 +31,6 @@ const tournamentSchema = new Schema(
   }
 );
 
-
 tournamentSchema.virtual('teamsCount').get(function() {
   return this.teams.length;
 });

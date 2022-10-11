@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_TOURNAMENTS,} from '../utils/queries';
 
-const HostedTournaments = (tournaments, title) => {
+const HostedTournaments = () => {
+    const { loading, data } = useQuery(QUERY_TOURNAMENTS);
+    const tournaments = data?.tournaments || []
+
     if (!tournaments.length) {
         return (
             <main className="center-horizontal">
@@ -19,6 +24,7 @@ const HostedTournaments = (tournaments, title) => {
         )
       }
 
+
     return (
         <main className="center-horizontal">
             <div className="container center-vertical container-header">
@@ -26,6 +32,9 @@ const HostedTournaments = (tournaments, title) => {
                 <Link to={`/create_tournament`}><button className="button" id="addTournament"><span>+</span> Create</button></Link>
                 <div className="line" />
             </div>
+            {loading ? (
+            <div>Loading...</div>
+          ) : (
             <div className="container">
                 {tournaments && tournaments.map(tournament => (
                     <div key={tournament._id} className="card">
@@ -34,6 +43,7 @@ const HostedTournaments = (tournaments, title) => {
                 </div>
                 ))}
             </div>
+          )}
         </main>
     );
 }

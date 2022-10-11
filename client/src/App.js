@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home';
 import HostedTournaments from './pages/HostedTournaments';
+import Tournament from './pages/Tournament';
+import CreateTournament from './pages/CreateTournament';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
@@ -41,16 +43,22 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Header />
-          <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/tournaments" element={<HostedTournaments />} />
-            <Route path="/login" element={<Signin />}/>
-            <Route path="/signup" element={<Signup />}/>
-
-              
-          </Routes>
-        <Footer />
+        <div className="page-container">
+          <div className="content-container">
+            <Header />
+              <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/create_tournament" element={<CreateTournament />}/>
+                <Route path="/tournament">
+                  <Route path="" element={<HostedTournaments />}/>
+                  <Route path=":id" element={<Tournament />}/>
+                </Route>
+                <Route path="/login" element={<Signin />}/>
+                <Route path="/signup" element={<Signup />}/>
+              </Routes>
+          </div>
+          <Footer />
+        </div>
       </Router>
     </ApolloProvider>
   );
