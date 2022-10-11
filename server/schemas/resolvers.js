@@ -1,19 +1,19 @@
 const { User, Tournament } = require("../models");
-const { signToken } = require('../utils/auth');
-const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require("apollo-server-express");
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('tournaments')
+          .select("-__v -password")
+          .populate("tournaments");
 
         return userData;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
     // get all tournaments
     tournaments: async (parent, { username }) => {
@@ -46,13 +46,13 @@ const resolvers = {
       const user = await User.findOne({ username });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
@@ -76,6 +76,24 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+    deleteTournament: async (parent, args, context) => {
+      if (context.user) {
+        const tournament = await Tournament.findOneAndDelete({
+          ...args,
+          username: context.user.username
+        });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { tournaments: tournament._id } },
+          { new: true }
+        );
+
+        return tournament;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
     addTeam: async (parent, { tournamentId, team_name }, context) => {
       if (context.user) {
         const updatedTournament = await Tournament.findOneAndUpdate(
@@ -83,12 +101,25 @@ const resolvers = {
           { $push: { teams: { team_name, username: context.user.username } } },
           { new: true, runValidators: true }
         );
-    
+
         return updatedTournament;
       }
-    
-      throw new AuthenticationError('You need to be logged in!');
-    }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addWinner: async (parent, { tournamentId, winner }, context) => {
+      if (context.user) {
+        const updatedTournament = await Tournament.findOneAndUpdate(
+          { _id: tournamentId },
+          { $push: { matches: { winner, username: context.user.username } } },
+          { new: true, runValidators: true }
+        );
+
+        return updatedTournament;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
