@@ -46,6 +46,7 @@ const typeDefs = gql`
     addUser(username: String!, password: String!): Auth
     addTournament(tournament_name: String!): Tournament
     addTeam(tournamentId: ID!, team_name: String!): Tournament
+    addWinner(tournamentId: ID!, winner: String!): Tournament
   }
   type Auth {
     token: ID!
