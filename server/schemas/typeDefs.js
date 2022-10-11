@@ -35,6 +35,7 @@ const typeDefs = gql`
     user: User
   }
   type Query {
+    me: User
     users: [User]
     user(username: String!): User
     tournaments(username: String): [Tournament]
@@ -44,6 +45,7 @@ const typeDefs = gql`
   type Mutation {
     login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!): Auth
+    addTournament(tournament_name: String!): Tournament
   }
 `;
 
