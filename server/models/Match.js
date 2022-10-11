@@ -1,15 +1,30 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const matchSchema = new Schema(
-    {
-        // Match Properties
-
+  {
+    // Match Properties
+    username: {
+      type: String,
+      required: true,
     },
-    {
-        toJSON: {
-            getters: true
-        }
-    }
+    prev_match: {
+      type: Schema.Types.ObjectId,
+      ref: "Match",
+    },
+    next_match: {
+      type: Schema.Types.ObjectId,
+      ref: "Match",
+    },
+    winner: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
 );
 
-module.exports = Match;
+module.exports = matchSchema;

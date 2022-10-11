@@ -1,36 +1,95 @@
-const { User, Tournament } = require('../models');
+const { User, Tournament } = require("../models");
+const { AuthenticationError } = require("apollo-server-express");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
-    Query: {
-        /* 
-            OPERATION EXAMPLE (Paste into GraphQL Operation):
+  Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("tournaments");
 
-            {
-                testQuery
-            }
-        */
-        testQuery: () => {
-            return "Hello World";
-        }
+        return userData;
+      }
+
+      throw new AuthenticationError("Not logged in");
     },
+    // get all tournaments
+    tournaments: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Tournament.find(params).sort({ createdAt: -1 });
+    },
+    // get a tournament by id
+    tournament: async (parent, { _id }) => {
+      return Tournament.findOne({ _id });
+    },
+    // get all users
+    users: async () => {
+      return User.find().select("-__v -password").populate("tournaments");
+    },
+    // get a user by username
+    user: async (parent, { username }) => {
+      return User.findOne({ username })
+        .select("-__v -password")
+        .populate("tournaments");
+    },
+  },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
-    Mutation: {
-        /* 
-            OPERATION EXAMPLE (Paste into GraphQL Operation):
+      return { token, user };
+    },
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
 
-            mutation testMutation($message: String!) {
-                testMutation(message: $message) {
-                    message
-                  }
-                }
-            }
-        */
-        testMutation: async (parent, { message }) => {
-            const test = { message: message };
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-            return test;
-        }
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    addTournament: async (parent, args, context) => {
+      if (context.user) {
+        const tournament = await Tournament.create({
+          ...args,
+          username: context.user.username,
+        });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { tournaments: tournament._id } },
+          { new: true }
+        );
+
+        return tournament;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addTeam: async (parent, { tournamentId, team_name }, context) => {
+      if (context.user) {
+        const updatedTournament = await Tournament.findOneAndUpdate(
+          { _id: tournamentId },
+          { $push: { teams: { team_name, username: context.user.username } } },
+          { new: true, runValidators: true }
+        );
+    
+        return updatedTournament;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
     }
-}
+  },
+};
 
 module.exports = resolvers;
