@@ -6,7 +6,7 @@ const { log2 } = require('mathjs');
 
 const tournamentSchema = new Schema(
   {
-    id: {
+    uid: {
       type: String
     },
     // Tournament properties
@@ -27,7 +27,7 @@ const tournamentSchema = new Schema(
       required: true,
     },
     teams: [teamSchema],
-    matches: [[matchSchema]]
+    matches: [matchSchema]
   },
   {
     toJSON: {

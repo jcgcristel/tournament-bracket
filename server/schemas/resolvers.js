@@ -1,8 +1,8 @@
 const { User, Tournament } = require("../models");
 const { signToken } = require("../utils/auth");
+const TournamentObj = require("../utils/generateTournament");
 const { AuthenticationError } = require("apollo-server-express");
 
-const TournamentObj = require('../utils/generateTournament');
 
 const resolvers = {
   Query: {
@@ -62,40 +62,26 @@ const resolvers = {
     },
     addTournament: async (parent, args, context) => {
       // if (context.user) {
-
-        const { tournamentName, userId, teams } = args;
-
-        const tournament = await Tournament.create({
-          tournament_name: tournamentName,
-          user_id: userId,
-          teams: teams
-          // username: context.user._id,
-        });
-
-        const tournamentSize = tournament.teams.length;
         
-        const tempTournament = new TournamentObj(tournamentName, userId, tournamentSize,teams);
+        // Destructure args to be used to create TournamentObject
+        const { tournamentName, userId, teams } = args;
+        const tournamentSize = teams.length;
 
-        tempTournament.generateMatches();
-        tempTournament.sortMatches();
-        tempTournament.setFirstRoundTeamMatchups();
+        const _tournament = new TournamentObj(tournamentName, userId, tournamentSize, teams);
 
-        await Tournament.findOneAndUpdate(
-          { _id: tournament._id },
-          { 
-            id: tempTournament.tournamentId,
-            matches: tempTournament.matches,
-            matchNumber: tempTournament.matchNumber
-            // $push: 
-            // { matches: 
-            //   { 
-            //     matchId, 
-            //     tour: tournament.user_id
-            //   } 
-            // } 
-          },
-          { new: true, runValidators: true }
-        );
+        _tournament.generateMatches();
+        _tournament.sortMatches();
+        _tournament.setFirstRoundTeamMatchups();        
+      
+        const tournament = await Tournament.create({
+          uid: _tournament.tournament_uid,
+          user_id: _tournament.user_id,
+          tournament_name: _tournament.tournament_name,
+          teamsCount: _tournament.tournamentSize,
+          teams: _tournament.teams,
+          matches: _tournament.matches
+          // username: context.user.username,
+        });
 
         await User.findByIdAndUpdate(
           // { _id: context.user._id },
@@ -105,10 +91,11 @@ const resolvers = {
         );
 
         return tournament;
-      // }
+      }
 
       // throw new AuthenticationError("You need to be logged in!");
-    },
+    // }
+    ,
     deleteTournament: async (parent, args, context) => {
       if (context.user) {
         const tournament = await Tournament.findOneAndDelete({

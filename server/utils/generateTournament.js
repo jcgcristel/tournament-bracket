@@ -7,9 +7,9 @@ const { v4: uuidv4 } = require('uuid');
 
 // Tournament class which will create instances of torunament as well as generate tournaments
 class Tournament {
-    constructor(tournament_name, userId, tournamentSize, teams) {
-        this.tournament_id = uuidv4(),
-        this.tournament_name = tournament_name,
+    constructor(tournamentName, userId, tournamentSize, teams) {
+        this.tournament_uid = uuidv4(),
+        this.tournament_name = tournamentName,
         this.user_id = userId,
         this.tournamentSize = tournamentSize,
         this.teams = teams,
@@ -32,13 +32,13 @@ class Tournament {
     // Class method to generate tournaments. Starts by generating championship match then works backwards to generate two preceding matches. Continues recursively until first round reached
     generateMatches(round=this.finalRound, nextMatch='') {
         if (round > 0) {
-            let match = new Match(this.tournamentId, round, nextMatch)
+            let match = new Match(this.tournament_id, round, nextMatch)
             this.matches.push(match);
 
             round -= 1;
 
-            this.generateMatches(round, match.matchId);
-            this.generateMatches(round, match.matchId);
+            this.generateMatches(round, match.match_id);
+            this.generateMatches(round, match.match_id);
         }
         else {
             return;

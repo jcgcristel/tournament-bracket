@@ -5,13 +5,13 @@ const { v4: uuidv4 } = require('uuid');
 // Match class
 class Match {
     constructor(tournamentId, round, nextMatch='') {
-        this.tournamentId = tournamentId,
-        this.round = round,
-        this.matchId = uuidv4(),
-        this.teams = [],
-        this.nextMatch = nextMatch
-        this.winner = ''
+        this.uid = uuidv4(),
+        this.tournament_uid = tournamentId,
         this.matchNumber;
+        this.round = round,
+        this.teams = [],
+        this.winner = '',
+        this.next_match = nextMatch
         // this.previousMatches = previousMatch
     }
 

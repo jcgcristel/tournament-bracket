@@ -8,27 +8,34 @@ const typeDefs = gql`
   }
   type Tournament {
     _id: ID
-    id: String
+    uid: String
     user_id: String
     tournament_name: String
     createdAt: String
     teamsCount: Int
-    teams: [Team]
+    teams: [Playing]
     matchCount: Int
     matches: [Match]
   }
+  type Playing {
+    teams: [Team]
+  }
   type Match {
     _id: ID
-    id: String
-    tournament_id: String
+    uid: String
+    tournament_uid: String
     matchNumber: Int
     round: Int
+    teams: [TournamentMatch]
+    winner: String
     next_match: String
+  }
+  type TournamentMatch {
+    playing: [Team]
   }
   type Team {
     _id: ID
     team_name: String
-    tournament_id: String
   }
   type User {
     _id: ID
@@ -46,13 +53,16 @@ const typeDefs = gql`
     tournaments(username: String): [Tournament]
     tournament(_id: ID!): Tournament
   }
+  input MatchInput {
+    teams_playing: [TeamInput]
+  }
   input TeamInput {
-    name: String
+    team_name: String
   }
   type Mutation {
     login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!): Auth
-    addTournament(tournamentName: String!, userId: String!, tournamentSize: Int, teams: [TeamInput]): Tournament
+    addTournament(tournamentName: String!, userId: String!, teams: [MatchInput]): Tournament
     addMatch(tournamentId: ID!, matchId: String!): Tournament
     deleteTournament(tournament_name: String!): Tournament
     addTeam(tournamentId: ID!, team_name: String!): Tournament
