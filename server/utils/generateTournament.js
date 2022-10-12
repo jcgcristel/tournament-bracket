@@ -1,7 +1,8 @@
 // Match class import
-import Match from './generateMatch.js';
+const Match = require('./generateMatch.js');
 // uuid imported to create unique IDs for tournament
-import {v4 as uuidv4 } from 'uuid';
+// import {v4 as uuidv4 } from 'uuid';
+const {v4: uuidv4} = require('uuid');
 
 // Tournament class which will create instances of torunament as well as generate tournaments
 class Tournament {
@@ -157,4 +158,4 @@ class Tournament {
 //     finalRound: 3
 //   }
 
-export default Tournament;
+module.exports =  Tournament;

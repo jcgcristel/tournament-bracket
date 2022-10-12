@@ -10,8 +10,8 @@ const typeDefs = gql`
     username: String
     teamsCount: Int
     matchCount: Int
-    teams: [Team]
-    matches: [Match]
+    teams: String
+    matches: String
   }
   type Team {
     _id: ID
