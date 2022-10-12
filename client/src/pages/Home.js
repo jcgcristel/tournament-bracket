@@ -9,14 +9,6 @@ const Home = () => {
         }
     };
 
-    const handleFormSubmit = async (event, thing) => {
-        event.preventDefault();
-        try {
-            setName('');
-        } catch (e) {
-            console.error(e);
-        }
-    };
 
     return (
         <main className="center-horizontal">
@@ -26,7 +18,7 @@ const Home = () => {
             </div>
             <div className="container">
                 <p className="center-text">To view the event bracket, enter the Tournament ID provided by your organizer.</p>
-                <form onSubmit={handleFormSubmit(tournament_ID)}>
+                <form>
                     <input type="text" id="tournamentId" name="tournamentId" placeholder="Tournament ID" onChange={handleChange} value={tournament_ID}></input>
                     <div className="center-horizontal">
                         <Link to={`/tournament/${tournament_ID}`}><input type="submit" className="button" value="Enter" id="findTournament"></input></Link>
