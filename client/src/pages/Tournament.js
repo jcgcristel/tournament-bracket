@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_TOURNAMENT } from "../utils/queries";
@@ -17,11 +18,32 @@ const Tournament = () => {
         return <div>Loading...</div>;
     }
     
+=======
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_TOURNAMENT } from '../utils/queries'
+
+const Tournament = (props) => {
+
+    const { id: _id } = useParams();
+
+    const { loading, data } = useQuery(QUERY_TOURNAMENT, {
+        variables: { id: _id },
+    });
+
+    const tournament = data?.tournament || {};
+    console.log(tournament)
+
+>>>>>>> f4f409245fd3db885915d91ba94efb980577a729
     return (
         <main className="center-horizontal">
             <div className="container center-vertical container-header">
                 <h2>{tournament.tournament_name}</h2>
+<<<<<<< HEAD
                 <p>ID: {tournament._id}</p>
+=======
+>>>>>>> f4f409245fd3db885915d91ba94efb980577a729
                 <div className="line" />
             </div>
             <div className="tournament-container center-horizontal">
@@ -88,10 +110,10 @@ const Tournament = () => {
                                 <p>Team 5</p>
                             </div>
                         </div>
-                    </div>                            
+                    </div>
                 </div>
             </div>
-          
+
         </main>
     );
 }
