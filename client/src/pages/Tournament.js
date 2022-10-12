@@ -1,11 +1,31 @@
-const Tournament = () => {
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_TOURNAMENT } from "../utils/queries";
+
+const Tournament = () => {  
+    const { id: _id } = useParams();
+
+    const { loading, data } = useQuery(QUERY_TOURNAMENT, {
+        variables: { id: _id }
+    });
+   
+    console.log(tournament);
+    
+    const tournament = data?.tournament || {};
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    
     return (
         <main className="center-horizontal">
             <div className="container center-vertical container-header">
-                <h2>Tournament 1</h2>
+                <h2>{tournament.tournament_name}</h2>
+                <p>ID: {tournament._id}</p>
                 <div className="line" />
             </div>
             <div className="tournament-container center-horizontal">
+                <p>PLACEHOLDER TOURNAMENT</p>
                 <div className="tournament-bracket">
                     <div className="match-set">
                         <div className="match">

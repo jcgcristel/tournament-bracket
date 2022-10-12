@@ -13,7 +13,7 @@ export const QUERY_TOURNAMENTS = gql`
 
 export const QUERY_TOURNAMENT = gql`
   query tournament($id: ID!) {
-    tournaments(id: $id) {
+    tournaments(_id: $id) {
       _id
       tournament_name
       createdAt
