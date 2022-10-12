@@ -147,10 +147,18 @@ button, .button {
   padding: 15px;
   font-size: 1rem;
   text-decoration: none;
+  border: var(--primary-highlight-colour) 1px solid;
 }
 button:hover, .button:hover {
   cursor: pointer;
   background-color: var(--primary-highlight-colour);
+  transition: 0.5s;
+  box-shadow: inset 0 0 1px var(--secondary-colour);
+}
+select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
 }
 
 
@@ -177,9 +185,11 @@ header a {
 }
 .title:hover #logo {
   filter: sepia(98%) saturate(2040%) hue-rotate(139deg) brightness(75%) contrast(103%);
+  transition: 0.5s;
 }
 .title:hover h1 {
   color: var(--primary-colour);
+  transition: 0.5s;
 }
 /* HEADER Nav */
 nav {
@@ -190,18 +200,24 @@ nav {
   border-radius: 15px;
 }
 a .lineHighlight {
-  visibility: hidden;
   position: relative;
   top: 20px;
   height: 3px;
-  background-color: var(--primary-colour);
+  background-color: var(--secondary-bg-colour);
   border-radius: 20px;
 }
 .navLink:hover {
   background-color: var(--primary-highlight-colour);
+  box-shadow: inset 0 0 1px var(--primary-colour);
+  transition: 0.5s;
+}
+a .lineHighlight {
+  background-color: var(--secondary-bg-colour);
+  transition: 1s;
 }
 a:hover .lineHighlight {
-  visibility: visible;
+  background-color: var(--primary-colour);
+  transition: 0.25s;
 }
 
 /* MAIN BODY */
@@ -213,14 +229,56 @@ a:hover .lineHighlight {
   padding-left: 30px;
   border-radius: 10px;
   background-color: var(--primary-selection-colour);
+  color: white;
 }
 .card:hover {
   cursor: pointer;
   background-color: var(--primary-highlight-colour);
 }
+.tournament-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  color: white;
+  border-radius: 10px;
+  border: var(--primary-highlight-colour) 1px solid;
+}
+.tournament-info {
+  display: block;
+  color: white;
+  padding: 20px;
+  flex-grow: 1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: var(--primary-selection-colour);
+}
+.tournament-info:hover {
+  background-color: var(--primary-highlight-colour);
+  transition: 0.5s;
+  box-shadow: inset 0 0 2px var(--secondary-colour);
+}
+.tournament-del {
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--secondary-bg-colour);
+  width: 2rem;
+}
+.tournament-del:hover {
+  background-color: var(--secondary-colour);
+  transition: 0.5s;
+  box-shadow: inset 0 0 2px var(--primary-highlight-colour);
+}
+.tournament-info p {
+  color: var(--secondary-colour);
+  font-style: italic;
+  font-weight: 100;
+}
 #addTournament {
   font-size: 1rem;
   display: inline;
+  
 }
 #tournamentId, #findTournament, #signin{
   margin-top: 30px;
@@ -261,6 +319,8 @@ a:hover .lineHighlight {
 }
 .team:hover {
   background-color: var(--secondary-colour);
+  transition: 0.5s;
+  box-shadow: inset 0 0 1px var(--primary-highlight-colour);
 }
 .match-set {
   border: 1px black solid;

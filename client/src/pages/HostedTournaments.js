@@ -37,12 +37,16 @@ const HostedTournaments = () => {
           ) : (
             <div className="container">
                 {tournaments && tournaments.map(tournament => (
-                    <div key={tournament._id} className="card" >
-                    <Link to={`/tournament/${tournament._id}`}><h3>{tournament.tournament_name}</h3></Link>
-                    <p className=''>Tournament ID: {tournament._id}</p>
-                    <button ><BsTrashFill/></button>
-                    {/* onClick={() => {console.log(tournament._id)}} */}
-                </div>
+                    <div className="tournament-card">
+                        <Link to={`/tournament/${tournament._id}`} key={tournament._id} className="center-vertical tournament-info">
+                                <h3>{tournament.tournament_name}</h3>
+                                <p className=''>Tournament ID: {tournament._id}</p>
+                        </Link>
+                        <div className="center-vertical center-horizontal tournament-del">
+                            <BsTrashFill/>
+                        </div>
+                        {/* onClick={() => {console.log(tournament._id)}} */}
+                    </div>
                 ))}
             </div>
           )}
