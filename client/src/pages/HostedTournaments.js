@@ -8,6 +8,29 @@ const HostedTournaments = () => {
     const { loading, data } = useQuery(QUERY_TOURNAMENTS);
     const tournaments = data?.tournaments || []
 
+    // const [deleteTournament] = useMutation(REMOVE_TOURNAMENT,
+    //     {
+    //       update(cache, { data: { deleteTournament }  }) {
+    //         try {
+    //             const { me } = cache.readQuery({ query: QUERY_ME });
+    //             cache.writeQuery({
+    //                 query: QUERY_ME,
+    //                 data: { me: { ...me, tournaments: [...me.tournaments, deleteTournament] } },
+    //             });
+    //         } catch (e) {
+    //             console.warn("First tournament hosted by user!")
+    //         }
+
+    //         const { tournaments } = cache.readQuery({ query: QUERY_TOURNAMENTS });
+    //             cache.writeQuery({
+    //                 query: QUERY_TOURNAMENTS,
+    //                 data: { tournaments: [addTournament, ...tournaments] },
+    //             });
+
+    //        }
+    //     }
+    //   );
+
     if (!tournaments.length) {
         return (
             <main className="center-horizontal">
@@ -40,7 +63,7 @@ const HostedTournaments = () => {
                     <div key={tournament._id} className="card">
                     <Link to={`/tournament/${tournament._id}`}><h3>{tournament.tournament_name}</h3></Link>
                     <p className=''>Tournament ID: {tournament._id}</p>
-                    <button><BsTrashFill/></button>
+                    <button ><BsTrashFill/></button>
                 </div>
                 ))}
             </div>
