@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_TOURNAMENT } from '../utils/mutations';
-import { QUERY_ME, QUERY_TOURNAMENTS } from '../utils/queries';
+import { QUERY_ME, QUERY_TOURNAMENTS } from '../utils/queries'
 
 const CreateTournament = () => {
     const [tournament_name, setName] = useState('')
@@ -30,7 +30,30 @@ const CreateTournament = () => {
 
             }
         }
-        )
+    )
+
+    const [numOfInputs, setNumOfInputs] = useState(0)
+    const [generatedInputs, setGeneratedInputs] = useState([]);
+
+    const findNumOfInputs = (event) => {
+        const numOfInputs = event.target.value;
+        setNumOfInputs(numOfInputs);
+        if (numOfInputs > 0) {
+            const generateArrays = Array.from(Array(Number(event.target.value)).keys())
+            setGeneratedInputs(generateArrays);
+        } else {
+            setGeneratedInputs([])
+        }
+    };
+
+    const addInputs = () => {
+        return generatedInputs.map((input) => (
+            <div>
+                <label htmlFor='numOfInputs'>Team {input + 1} </label>
+                <input type="text" className='team_name' name='team_name'></input>
+            </div>
+        ))
+    }
 
     const handleChange = (event) => {
         if (event.target.value) {
@@ -65,7 +88,23 @@ const CreateTournament = () => {
                         <label htmlFor="tournament_name">TOURNAMENT NAME</label>
                         <input type="text" id="tournament_name" name="tournament_name" placeholder="Enter tournament name." onChange={handleChange} value={tournament_name}></input>
                     </div>
-
+                    <div className='input-group'>
+                        <label htmlFor='numOfInputs'>Number of Teams</label>
+                        <select className='numOfTeams' id="numOfTeams" name="numOfInputs" value={numOfInputs} onChange={findNumOfInputs}>
+                            <option value="" selected="selected"></option>
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="16">16</option>
+                        </select>
+                    </div>
+                    <div className='input-group'>
+                        {generatedInputs.length ? (
+                            <div>
+                                {addInputs()}
+                            </div>
+                        ) : null
+                        }
+                    </div>
                     <div className="center-horizontal">
                         <input type="submit" className="button" id="addTournament" value="+ Create"></input>
                     </div>
