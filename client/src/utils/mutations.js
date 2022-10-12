@@ -36,8 +36,8 @@ export const ADD_TOURNAMENT = gql`
 `;
 
 export const DELETE_TOURNAMENT = gql`
-  mutation deleteTournament($id: ID!) {
-    deleteTournament(songId: $songId) {
+  mutation deleteTournament($_id: ID!) {
+    deleteTournament(_id: $_id) {
       _id
     }
   }

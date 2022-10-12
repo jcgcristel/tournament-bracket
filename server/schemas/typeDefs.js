@@ -45,7 +45,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!): Auth
     addTournament(tournament_name: String!): Tournament
-    deleteTournament(tournament_name: String!): Tournament
+    deleteTournament(_id: ID!): Tournament
     addTeam(tournamentId: ID!, team_name: String!): Tournament
     addWinner(tournamentId: ID!, winner: String!): Tournament
   }
