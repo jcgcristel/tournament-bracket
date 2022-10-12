@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_TOURNAMENTS,} from '../utils/queries';
+import { BsTrashFill } from "react-icons/bs";
 
 const HostedTournaments = () => {
     const { loading, data } = useQuery(QUERY_TOURNAMENTS);
@@ -24,7 +25,6 @@ const HostedTournaments = () => {
         )
       }
 
-
     return (
         <main className="center-horizontal">
             <div className="container center-vertical container-header">
@@ -39,7 +39,8 @@ const HostedTournaments = () => {
                 {tournaments && tournaments.map(tournament => (
                     <div key={tournament._id} className="card">
                     <Link to={`/tournament/${tournament._id}`}><h3>{tournament.tournament_name}</h3></Link>
-                    <p>Tournament ID: {tournament._id}</p>
+                    <p className=''>Tournament ID: {tournament._id}</p>
+                    <button><BsTrashFill/></button>
                 </div>
                 ))}
             </div>
