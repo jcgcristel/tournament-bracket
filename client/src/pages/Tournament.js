@@ -1,23 +1,22 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_TOURNAMENT } from '../utils/queries'
 
 const Tournament = (props) => {
 
-    const { id: _id } = useParams();
+    // const { id: _id } = useParams();
 
-    const { loading, data } = useQuery(QUERY_TOURNAMENT, {
-        variables: { id: _id },
-    });
+    // const { loading, data } = useQuery(QUERY_TOURNAMENT, {
+    //     variables: { id: _id },
+    // });
 
-    const tournament = data?.tournament || {};
-    console.log(tournament)
+    // const tournament = data?.tournament || {};
+    // console.log(tournament)
 
     return (
         <main className="center-horizontal">
             <div className="container center-vertical container-header">
-                <h2>{tournament.tournament_name}</h2>
+                <h2>sdsd</h2>
                 <div className="line" />
             </div>
             <div className="tournament-container center-horizontal">
