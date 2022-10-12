@@ -1,35 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_TOURNAMENTS,} from '../utils/queries';
+import {QUERY_TOURNAMENTS} from '../utils/queries';
 import { BsTrashFill } from "react-icons/bs";
+import { useMutation } from '@apollo/client';
+import { DELETE_TOURNAMENT } from '../utils/mutations';
+
 
 const HostedTournaments = () => {
-    const { loading, data } = useQuery(QUERY_TOURNAMENTS);
+    const { loading, data, refetch } = useQuery(QUERY_TOURNAMENTS);
     const tournaments = data?.tournaments || []
 
-    // const [deleteTournament] = useMutation(REMOVE_TOURNAMENT,
-    //     {
-    //       update(cache, { data: { deleteTournament }  }) {
-    //         try {
-    //             const { me } = cache.readQuery({ query: QUERY_ME });
-    //             cache.writeQuery({
-    //                 query: QUERY_ME,
-    //                 data: { me: { ...me, tournaments: [...me.tournaments, deleteTournament] } },
-    //             });
-    //         } catch (e) {
-    //             console.warn("First tournament hosted by user!")
-    //         }
+    const [deleteTournament] = useMutation(DELETE_TOURNAMENT, {
+        onCompleted: () => refetch(),
+      });
 
-    //         const { tournaments } = cache.readQuery({ query: QUERY_TOURNAMENTS });
-    //             cache.writeQuery({
-    //                 query: QUERY_TOURNAMENTS,
-    //                 data: { tournaments: [addTournament, ...tournaments] },
-    //             });
-
-    //        }
-    //     }
-    //   );
+    const handleDelete = (id) => {
+        deleteTournament({ variables: { id } });
+      };
 
     if (!tournaments.length) {
         return (
@@ -60,10 +48,10 @@ const HostedTournaments = () => {
           ) : (
             <div className="container">
                 {tournaments && tournaments.map(tournament => (
-                    <div key={tournament._id} className="card">
+                    <div key={tournament._id} className="card" >
                     <Link to={`/tournament/${tournament._id}`}><h3>{tournament.tournament_name}</h3></Link>
                     <p className=''>Tournament ID: {tournament._id}</p>
-                    <button ><BsTrashFill/></button>
+                    <button onClick={() => handleDelete(tournament._id)}><BsTrashFill/></button>
                 </div>
                 ))}
             </div>

@@ -34,3 +34,9 @@ export const ADD_TOURNAMENT = gql`
     }
   }
 `;
+
+export const DELETE_TOURNAMENT = gql`
+  mutation deleteTournament($_id: Int!) {
+    deleteTournament(where: {id: {_eq: $_id}}) 
+  }
+`;
