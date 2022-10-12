@@ -1,14 +1,16 @@
 // Match class import
-import Match from './generateMatch.js';
+// import Match from './generateMatch.js';
+const Match = require('./generateMatch');
 // uuid imported to create unique IDs for tournament
-import {v4 as uuidv4 } from 'uuid';
+// import {v4 as uuidv4 } from 'uuid';
+const { v4: uuidv4 } = require('uuid');
 
 // Tournament class which will create instances of torunament as well as generate tournaments
 class Tournament {
-    constructor(tournamentName, userId, tournamentSize, teams) {
-        this.tournamentName = tournamentName,
-        this.tournamentId = uuidv4(),
-        this.username = userId,
+    constructor(tournament_name, userId, tournamentSize, teams) {
+        this.tournament_id = uuidv4(),
+        this.tournament_name = tournament_name,
+        this.user_id = userId,
         this.tournamentSize = tournamentSize,
         this.teams = teams,
         this.matches = []
@@ -64,7 +66,7 @@ class Tournament {
             }
         }
     }
-}
+};
 
 // Added "type": "module" to package.json to test funcion quickly
 
@@ -157,4 +159,4 @@ class Tournament {
 //     finalRound: 3
 //   }
 
-export default Tournament;
+module.exports = Tournament;

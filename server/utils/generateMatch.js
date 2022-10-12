@@ -1,5 +1,6 @@
 // Import uuid to generate random codes for match ID
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
+const { v4: uuidv4 } = require('uuid');
 
 // Match class
 class Match {
@@ -59,4 +60,5 @@ class Match {
     // }
 };
 
-export default Match;
+// export default Match;
+module.exports = Match;
