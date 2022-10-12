@@ -69,6 +69,7 @@ const resolvers = {
       if (context.user) {
         const tournament = await Tournament.create({
           tournament_name: tournamentObj.tournamentName,
+          tournamentId: tournamentObj.tournamentId,
           // teams_count: tournamentObj.tournamentSize,
           // matchCount: 4,
           teams: JSON.stringify(tournamentObj.teams),

@@ -12,6 +12,7 @@ const typeDefs = gql`
     matchCount: Int
     teams: String
     matches: String
+    tournamentId: String
   }
   type Team {
     _id: ID
