@@ -3,27 +3,24 @@ const teamSchema = require('./Team');
 
 const matchSchema = new Schema(
   {
+    id: {
+      type: String
+    },
     // Match Properties
-    username: {
-      type: String,
-    },
-    round: {
-      type: Number,
-    },
-    matchId: {
-      type: String,
-    },
-    teams: [teamSchema],
-    next_match: {
+    tournament_id: {
       type: Schema.Types.ObjectId,
-      ref: "Match",
-    },
-    winner: {
-      type: String,
+      ref: "Tournament"
     },
     matchNumber: {
       type: Number,
     },
+    round: {
+      type: Number,
+    },
+    next_match: {
+      type: Schema.Types.ObjectId,
+      ref: "Match"
+    }
   },
   {
     toJSON: {
@@ -31,6 +28,5 @@ const matchSchema = new Schema(
     },
   }
 );
-
 
 module.exports = matchSchema;

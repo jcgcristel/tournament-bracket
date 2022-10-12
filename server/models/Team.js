@@ -5,13 +5,14 @@ const teamSchema = new Schema(
     // Team properties
     team_name: {
       type: String,
-      required: "You need to name the team!",
+      required: [true, "You need to name the team."],
       minlength: 1,
-      maxlength: 100,
+      maxlength: [30, "Team name must be 30 characters or less."],
     },
-    username: {
-      type: String,
-    },
+    // tournament_id: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "Tournament"
+    // },
   },
   {
     toJSON: {

@@ -17,6 +17,7 @@
     "faker": "^4.1.0",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
+    "mathjs": "^11.3.0",
     "mongoose": "^5.9.9",
     "uuid": "^9.0.0"
   },

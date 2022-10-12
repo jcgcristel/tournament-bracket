@@ -2,6 +2,8 @@ const { User, Tournament } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 
+const TournamentObj = require('../utils/generateTournament');
+
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -59,22 +61,53 @@ const resolvers = {
       return { token, user };
     },
     addTournament: async (parent, args, context) => {
-      if (context.user) {
+      // if (context.user) {
+
+        const { tournamentName, userId, teams } = args;
+
         const tournament = await Tournament.create({
-          ...args,
-          username: context.user.username,
+          tournament_name: tournamentName,
+          user_id: userId,
+          teams: teams
+          // username: context.user._id,
         });
 
+        const tournamentSize = tournament.teams.length;
+        
+        const tempTournament = new TournamentObj(tournamentName, userId, tournamentSize,teams);
+
+        tempTournament.generateMatches();
+        tempTournament.sortMatches();
+        tempTournament.setFirstRoundTeamMatchups();
+
+        await Tournament.findOneAndUpdate(
+          { _id: tournament._id },
+          { 
+            id: tempTournament.tournamentId,
+            matches: tempTournament.matches,
+            matchNumber: tempTournament.matchNumber
+            // $push: 
+            // { matches: 
+            //   { 
+            //     matchId, 
+            //     tour: tournament.user_id
+            //   } 
+            // } 
+          },
+          { new: true, runValidators: true }
+        );
+
         await User.findByIdAndUpdate(
-          { _id: context.user._id },
+          // { _id: context.user._id },
+          { _id: tournament.user_id },
           { $push: { tournaments: tournament._id } },
           { new: true }
         );
 
         return tournament;
-      }
+      // }
 
-      throw new AuthenticationError("You need to be logged in!");
+      // throw new AuthenticationError("You need to be logged in!");
     },
     deleteTournament: async (parent, args, context) => {
       if (context.user) {
