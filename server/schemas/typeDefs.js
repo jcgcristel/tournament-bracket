@@ -13,7 +13,7 @@ const typeDefs = gql`
     tournament_name: String
     createdAt: String
     teamsCount: Int
-    teams: [Playing]
+    teams: [Team]
     matchCount: Int
     matches: [Match]
   }
@@ -62,7 +62,7 @@ const typeDefs = gql`
   type Mutation {
     login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!): Auth
-    addTournament(tournamentName: String!, userId: String!, teams: [MatchInput]): Tournament
+    addTournament(tournamentName: String!, userId: String!, teams: [TeamInput]): Tournament
     addMatch(tournamentId: ID!, matchId: String!): Tournament
     deleteTournament(tournament_name: String!): Tournament
     addTeam(tournamentId: ID!, team_name: String!): Tournament

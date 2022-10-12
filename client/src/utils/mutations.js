@@ -25,12 +25,21 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TOURNAMENT = gql`
-  mutation addTournament($tournament_name: String!) {
-    addTournament(tournament_name: $tournament_name) {
+  mutation AddTournament($tournamentName: String!, $userId: String!, $teams: [TeamInput]) {
+    addTournament(tournamentName: $tournamentName, userId: $userId, teams: $teams) {
       _id
+      uid
+      user_id
       tournament_name
-      createdAt
-      username
+      teamsCount
+      teams {
+          team_name
+      }
+      matches {
+        uid
+        next_match
+        round
+      }
     }
-  }
+}
 `;
