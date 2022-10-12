@@ -4,8 +4,7 @@ const { log2, pow } = require('mathjs');
 const tournamentObj = {
     _id: '1',
     tournament_name: 'name',
-    teams: ['Team1', 'Team2', 'Team3', 'Team4', 'Team5', 'Team6', 'Team7', 'Team8',
-            'Team9', 'Team10', 'Team11', 'Team12', 'Team13', 'Team14', 'Team15', 'Team16']
+    teams: ['Team1', 'Team2', 'Team3', 'Team4', 'Team5', 'Team6', 'Team7', 'Team8']
 }
 
 function calcRounds(teamsArr) {
@@ -41,11 +40,30 @@ function generateMatches(teamsArr) {
     return matches;
 }
 
-function nextMatches(matches) {
+function genMatchesByRounds(matches) {
+    const nextMatches = [];
     
+    const totalRounds = generateMatches(tournamentObj.teams)[0].round;
+    console.log(totalRounds);
+
+    for (var i = 1; i <= totalRounds; i++) {
+        nextMatches.push(matches.filter(match => match.round == i));
+    }
+
+    console.log(nextMatches);
+
+    return nextMatches;
 }
 
-console.log(generateMatches(tournamentObj.teams));
+function genNextMatches(sortedMatches) {
+    console.log(sortedMatches.length);
+}
+
+var genMatches = generateMatches(tournamentObj.teams);
+var matches = genMatchesByRounds(genMatches);
+var sortedMatches = genNextMatches(matches);
+
+console.log(sortedMatches);
 
 // function seeding(numPlayers){
 //     var rounds = Math.log(numPlayers)/Math.log(2)-1;
