@@ -61,7 +61,7 @@ const resolvers = {
     },
     addTournament: async (parent, args, context) => {
 
-      const tournamentObj = new TournamentClass(args.tournament_name, context.user._id, 8, [['team1', 'team2'], ['team3', 'team4'], ['team5', 'team6'], ['team7', 'team8']]);
+      const tournamentObj = new TournamentClass(args.tournament_name, context.user._id, args.teamsCount, args.teams);
       tournamentObj.generateMatches();
       tournamentObj.sortMatches();
       tournamentObj.setFirstRoundTeamMatchups();
