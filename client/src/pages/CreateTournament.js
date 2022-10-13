@@ -46,13 +46,22 @@ const CreateTournament = () => {
         }
     };
 
+    const [teamName, setTeamName] = useState('');
+
+    const handleInputChange = (event) => {
+        if (event.target.value) {
+            setTeamName(event.target.value);
+        }
+    };
+
     const addInputs = () => {
         return generatedInputs.map((input) => (
             <div>
                 <label htmlFor='numOfInputs'>Team {input + 1} </label>
-                <input type="text" className='team_name' name='team_name'></input>
+                <input type="text" className='team_name' name={`team_name${input + 1}`} onChange={handleInputChange} value={teamName}></input>
             </div>
         ))
+        
     }
 
     const handleChange = (event) => {
@@ -60,6 +69,8 @@ const CreateTournament = () => {
             setName(event.target.value);
         }
     };
+
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
