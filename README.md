@@ -34,4 +34,4 @@ To run locally once cloned:
 * Enter `npm run develop` in the command line while in the root folder to launch the React application at `http://localhost:3000/` and GraphQL at `http://localhost:3001/graphql` in the browser
 
 ## Contribution
-Made with ❤️ by Dylan Hay
+Made with ❤️ by Joyce Garnett, Jaryd Knight, Rhenea Espeleta and Dylan Hay
