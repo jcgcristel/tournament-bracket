@@ -48,41 +48,151 @@ const CreateTournament = () => {
 
     const [teamName, setTeamName] = useState('');
 
-    const handleInputChange = (event) => {
-        if (event.target.value) {
-            setTeamName(event.target.value);
-        }
+    const handleInputChange = (evt) => {
+        const value = evt.target.value;
+        setTeamName({
+            ...teamName,
+            [evt.target.value]: value
+        })
     };
 
     const addInputs = () => {
-        return generatedInputs.map((input) => (
-            <div>
-                <label htmlFor='numOfInputs'>Team {input + 1} </label>
-                <input type="text" className='team_name' name={`team_name${input + 1}`} onChange={handleInputChange} value={teamName}></input>
-            </div>
-        ))
-        // console.log(generatedInputs)
-        // if you're here to perceive, dont
-        // return (
+        // return generatedInputs.map((input) => (
         //     <div>
-        //         <div>
-        //             <label htmlFor='numOfInputs'>Team 1 </label>
-        //             <input type="text" className='team_name' name='team_name1' onChange={handleInputChange} value={teamName.team1}></input>
-        //         </div>
-        //         <div>
-        //             <label htmlFor='numOfInputs'>Team 2 </label>
-        //             <input type="text" className='team_name' name='team_name2' onChange={handleInputChange} value={teamName.team2}></input>
-        //         </div>
-        //         <div>
-        //             <label htmlFor='numOfInputs'>Team 3 </label>
-        //             <input type="text" className='team_name' name='team_name3' onChange={handleInputChange} value={teamName.team3}></input>
-        //         </div>
-        //         <div>
-        //             <label htmlFor='numOfInputs'>Team 4 </label>
-        //             <input type="text" className='team_name' name='team_name4' onChange={handleInputChange} value={teamName.team4}></input>
-        //         </div>
+        //         <label htmlFor='numOfInputs'>Team {input + 1} </label>
+        //         <input type="text" className='team_name' name={`team_name${input + 1}`} onChange={handleInputChange} value={teamName}></input>
         //     </div>
-        // )
+        // ))
+        switch (generatedInputs.length) {
+            case 4:
+                return (
+                    <div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 1 </label>
+                            <input type="text" className='team_name' name='team_name1' onChange={handleInputChange} value={teamName.team1}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 2 </label>
+                            <input type="text" className='team_name' name='team_name2' onChange={handleInputChange} value={teamName.team2}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 3 </label>
+                            <input type="text" className='team_name' name='team_name3' onChange={handleInputChange} value={teamName.team3}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 4 </label>
+                            <input type="text" className='team_name' name='team_name4' onChange={handleInputChange} value={teamName.team4}></input>
+                        </div>
+                    </div>
+                )
+            case 8:
+                return (
+                    <div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 1 </label>
+                            <input type="text" className='team_name' name='team_name1' onChange={handleInputChange} value={teamName.team1}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 2 </label>
+                            <input type="text" className='team_name' name='team_name2' onChange={handleInputChange} value={teamName.team2}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 3 </label>
+                            <input type="text" className='team_name' name='team_name3' onChange={handleInputChange} value={teamName.team3}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 4 </label>
+                            <input type="text" className='team_name' name='team_name4' onChange={handleInputChange} value={teamName.team4}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 5 </label>
+                            <input type="text" className='team_name' name='team_name5' onChange={handleInputChange} value={teamName.team5}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 6 </label>
+                            <input type="text" className='team_name' name='team_name6' onChange={handleInputChange} value={teamName.team6}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 7 </label>
+                            <input type="text" className='team_name' name='team_name7' onChange={handleInputChange} value={teamName.team7}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 8 </label>
+                            <input type="text" className='team_name' name='team_name8' onChange={handleInputChange} value={teamName.team8}></input>
+                        </div>
+                    </div>
+                )
+            case 16:
+                return (
+                    <div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 1 </label>
+                            <input type="text" className='team_name' name='team_name1' onChange={handleInputChange} value={teamName.team1}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 2 </label>
+                            <input type="text" className='team_name' name='team_name2' onChange={handleInputChange} value={teamName.team2}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 3 </label>
+                            <input type="text" className='team_name' name='team_name3' onChange={handleInputChange} value={teamName.team3}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 4 </label>
+                            <input type="text" className='team_name' name='team_name4' onChange={handleInputChange} value={teamName.team4}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 5 </label>
+                            <input type="text" className='team_name' name='team_name5' onChange={handleInputChange} value={teamName.team5}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 6 </label>
+                            <input type="text" className='team_name' name='team_name6' onChange={handleInputChange} value={teamName.team6}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 7 </label>
+                            <input type="text" className='team_name' name='team_name7' onChange={handleInputChange} value={teamName.team7}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 8 </label>
+                            <input type="text" className='team_name' name='team_name8' onChange={handleInputChange} value={teamName.team8}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 1 </label>
+                            <input type="text" className='team_name' name='team_name9' onChange={handleInputChange} value={teamName.team9}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 2 </label>
+                            <input type="text" className='team_name' name='team_name10' onChange={handleInputChange} value={teamName.team10}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 3 </label>
+                            <input type="text" className='team_name' name='team_name11' onChange={handleInputChange} value={teamName.team11}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 4 </label>
+                            <input type="text" className='team_name' name='team_name12' onChange={handleInputChange} value={teamName.team12}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 5 </label>
+                            <input type="text" className='team_name' name='team_name13' onChange={handleInputChange} value={teamName.team13}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 6 </label>
+                            <input type="text" className='team_name' name='team_name14' onChange={handleInputChange} value={teamName.team14}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 7 </label>
+                            <input type="text" className='team_name' name='team_name15' onChange={handleInputChange} value={teamName.team15}></input>
+                        </div>
+                        <div>
+                            <label htmlFor='numOfInputs'>Team 8 </label>
+                            <input type="text" className='team_name' name='team_name16' onChange={handleInputChange} value={teamName.team16}></input>
+                        </div>
+                    </div>
+                )
+        }
+        console.log(teamName)
 
     }
 
