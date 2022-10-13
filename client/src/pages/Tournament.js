@@ -4,14 +4,13 @@ import { QUERY_TOURNAMENT } from '../utils/queries'
 
 const Tournament = (props) => {
 
-    // const { id: _id } = useParams();
+    const { id: _id } = useParams();
 
-    // const { loading, data } = useQuery(QUERY_TOURNAMENT, {
-    //     variables: { id: _id },
-    // });
+    const { loading, data } = useQuery(QUERY_TOURNAMENT, {
+        variables: { id: _id },
+    });
 
-    // const tournament = data?.tournament || {};
-    // console.log(tournament)
+    const tournament = data?.tournament || {};
 
     return (
         <main className="center-horizontal">
