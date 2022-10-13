@@ -3,39 +3,14 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { BsTrashFill } from "react-icons/bs";
 import { QUERY_TOURNAMENTS } from '../utils/queries'
-// import { useMutation } from '@apollo/client';
-// import { DELETE_TOURNAMENT } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const HostedTournaments = () => {
-    const { loading, data } = useQuery(QUERY_TOURNAMENTS);
+    const nameOfuser = Auth.getProfile().data.username
+    const { loading, data } = useQuery(QUERY_TOURNAMENTS, {
+        variables: { username: nameOfuser },
+      });
     const tournaments = data?.tournaments || []
-
-    // const [deleteTournament] = useMutation(DELETE_TOURNAMENT, 
-    //     {
-    //         update(cache, { data: { deleteTournament } }) {
-    //                 const { me } = cache.readQuery({ query: QUERY_ME });
-    //                 cache.updateQuery({
-    //                     query: QUERY_ME,
-    //                     data: { me: { ...me, tournaments: [...me.tournaments, deleteTournament] } },
-    //                 });
-
-    //             const { tournaments } = cache.readQuery({ query: QUERY_TOURNAMENTS });
-    //             cache.updateQuery({
-    //                 query: QUERY_TOURNAMENTS,
-    //                 data: { tournaments: [deleteTournament, ...tournaments] },
-    //             });
-
-    //         }
-    //     });
-    //
-    // in delete async func
-    // const handleDelete  = async (thing) => {
-    //     await deleteTournament({
-    //         variables: {
-    //             _id: thing
-    //         }
-    //     });
-    // }
 
     if (!tournaments.length) {
         return (
