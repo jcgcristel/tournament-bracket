@@ -12,6 +12,7 @@ import Tournament from './pages/Tournament';
 import CreateTournament from './pages/CreateTournament';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import NoMatch from './pages/NoMatch';
 
 // Allow Routing 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -55,6 +56,10 @@ function App() {
                 </Route>
                 <Route path="/login" element={<Signin />}/>
                 <Route path="/signup" element={<Signup />}/>
+                <Route
+                  path="*"
+                  element={<NoMatch />}
+                />
               </Routes>
           </div>
           <Footer />
