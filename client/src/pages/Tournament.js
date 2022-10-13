@@ -18,6 +18,7 @@ const Tournament = (props) => {
         <main className="center-horizontal">
             <div className="container center-vertical container-header">
                 <h2>{tournament.tournament_name}</h2>
+                <p>ID: {tournament._id}</p>
                 <div className="line" />
             </div>
             <div className="tournament-container center-horizontal">
