@@ -21,8 +21,12 @@ const tournamentSchema = new Schema(
       type: String,
       required: true,
     },
-    teams: [teamSchema],
-    matches: [matchSchema]
+    teams: {
+      type: String
+    },
+    matches: {
+      type: String
+    }
   },
   {
     toJSON: {

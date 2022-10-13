@@ -1,6 +1,7 @@
 const { User, Tournament } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+const TournamentClass = require('../utils/generateTournament');
 
 const resolvers = {
   Query: {
@@ -59,9 +60,27 @@ const resolvers = {
       return { token, user };
     },
     addTournament: async (parent, args, context) => {
+
+      const tournamentObj = new TournamentClass(args.tournament_name, context.user._id, args.teamsCount, args.teams);
+      tournamentObj.generateMatches();
+      tournamentObj.sortMatches();
+      tournamentObj.setFirstRoundTeamMatchups();
+
+      // const tournamentObj = new TournamentClass(args.tournament_name, context.user._id, 8,[['team1', 'team2'], ['team3', 'team4'], ['team5', 'team6'], ['team7', 'team8']]);
+      // tournamentObj.generateMatches();
+      // tournamentObj.sortMatches();
+      // tournamentObj.setFirstRoundTeamMatchups();
+
       if (context.user) {
         const tournament = await Tournament.create({
-          ...args,
+          tournament_name: tournamentObj.tournamentName,
+          // tournamentId: tournamentObj.tournamentId,
+          // teams_count: tournamentObj.tournamentSize,
+          // matchCount: 4,
+          teams: JSON.stringify(tournamentObj.teams),
+          matches: JSON.stringify(tournamentObj.matches),
+          // teams: "team",
+          // matches: "match",
           username: context.user.username,
         });
 

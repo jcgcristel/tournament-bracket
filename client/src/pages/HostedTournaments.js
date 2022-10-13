@@ -3,39 +3,39 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { BsTrashFill } from "react-icons/bs";
 import { QUERY_ME, QUERY_TOURNAMENTS } from '../utils/queries'
-import { useMutation } from '@apollo/client';
-import { DELETE_TOURNAMENT } from '../utils/mutations';
+// import { useMutation } from '@apollo/client';
+// import { DELETE_TOURNAMENT } from '../utils/mutations';
 
 const HostedTournaments = () => {
     const { loading, data } = useQuery(QUERY_TOURNAMENTS);
     const tournaments = data?.tournaments || []
 
-    const [deleteTournament] = useMutation(DELETE_TOURNAMENT, 
-        {
-            update(cache, { data: { deleteTournament } }) {
-                    const { me } = cache.readQuery({ query: QUERY_ME });
-                    cache.updateQuery({
-                        query: QUERY_ME,
-                        data: { me: { ...me, tournaments: [...me.tournaments, deleteTournament] } },
-                    });
+    // const [deleteTournament] = useMutation(DELETE_TOURNAMENT, 
+    //     {
+    //         update(cache, { data: { deleteTournament } }) {
+    //                 const { me } = cache.readQuery({ query: QUERY_ME });
+    //                 cache.updateQuery({
+    //                     query: QUERY_ME,
+    //                     data: { me: { ...me, tournaments: [...me.tournaments, deleteTournament] } },
+    //                 });
 
-                const { tournaments } = cache.readQuery({ query: QUERY_TOURNAMENTS });
-                cache.updateQuery({
-                    query: QUERY_TOURNAMENTS,
-                    data: { tournaments: [deleteTournament, ...tournaments] },
-                });
+    //             const { tournaments } = cache.readQuery({ query: QUERY_TOURNAMENTS });
+    //             cache.updateQuery({
+    //                 query: QUERY_TOURNAMENTS,
+    //                 data: { tournaments: [deleteTournament, ...tournaments] },
+    //             });
 
-            }
-        });
+    //         }
+    //     });
     //
     // in delete async func
-    const handleDelete  = async (thing) => {
-        await deleteTournament({
-            variables: {
-                _id: thing
-            }
-        });
-    }
+    // const handleDelete  = async (thing) => {
+    //     await deleteTournament({
+    //         variables: {
+    //             _id: thing
+    //         }
+    //     });
+    // }
 
     if (!tournaments.length) {
         return (
@@ -71,7 +71,10 @@ const HostedTournaments = () => {
                                 <h3>{tournament.tournament_name}</h3>
                                 <p className=''>Tournament ID: {tournament._id}</p>
                             </Link>
-                            <div onClick={handleDelete (tournament._id)}className="center-vertical center-horizontal tournament-del">
+                            <div 
+                            // onClick={handleDelete (tournament._id)}
+                            
+                            className="center-vertical center-horizontal tournament-del">
                                 <BsTrashFill />
                             </div>
                             {/* onClick={() => {console.log(tournament._id)}} */}
