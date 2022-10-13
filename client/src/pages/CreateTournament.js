@@ -61,7 +61,29 @@ const CreateTournament = () => {
                 <input type="text" className='team_name' name={`team_name${input + 1}`} onChange={handleInputChange} value={teamName}></input>
             </div>
         ))
-        
+        // console.log(generatedInputs)
+        // if you're here to perceive, dont
+        // return (
+        //     <div>
+        //         <div>
+        //             <label htmlFor='numOfInputs'>Team 1 </label>
+        //             <input type="text" className='team_name' name='team_name1' onChange={handleInputChange} value={teamName.team1}></input>
+        //         </div>
+        //         <div>
+        //             <label htmlFor='numOfInputs'>Team 2 </label>
+        //             <input type="text" className='team_name' name='team_name2' onChange={handleInputChange} value={teamName.team2}></input>
+        //         </div>
+        //         <div>
+        //             <label htmlFor='numOfInputs'>Team 3 </label>
+        //             <input type="text" className='team_name' name='team_name3' onChange={handleInputChange} value={teamName.team3}></input>
+        //         </div>
+        //         <div>
+        //             <label htmlFor='numOfInputs'>Team 4 </label>
+        //             <input type="text" className='team_name' name='team_name4' onChange={handleInputChange} value={teamName.team4}></input>
+        //         </div>
+        //     </div>
+        // )
+
     }
 
     const handleChange = (event) => {
@@ -69,7 +91,6 @@ const CreateTournament = () => {
             setName(event.target.value);
         }
     };
-
 
 
     const handleFormSubmit = async (event) => {
