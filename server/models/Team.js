@@ -11,7 +11,6 @@ const teamSchema = new Schema(
     },
     username: {
       type: String,
-      required: true,
     },
   },
   {

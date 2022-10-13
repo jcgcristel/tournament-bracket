@@ -1,23 +1,28 @@
 const { Schema } = require("mongoose");
+const teamSchema = require('./Team');
 
 const matchSchema = new Schema(
   {
     // Match Properties
     username: {
       type: String,
-      required: true,
     },
-    prev_match: {
-      type: Schema.Types.ObjectId,
-      ref: "Match",
+    round: {
+      type: Number,
     },
+    matchId: {
+      type: String,
+    },
+    teams: [teamSchema],
     next_match: {
       type: Schema.Types.ObjectId,
       ref: "Match",
     },
     winner: {
       type: String,
-      required: true,
+    },
+    matchNumber: {
+      type: Number,
     },
   },
   {
@@ -26,5 +31,6 @@ const matchSchema = new Schema(
     },
   }
 );
+
 
 module.exports = matchSchema;

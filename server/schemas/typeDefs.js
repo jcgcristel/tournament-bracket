@@ -21,9 +21,12 @@ const typeDefs = gql`
   type Match {
     _id: ID
     username: String
-    winner: String
-    prev_match: [Match]
+    round: Int
+    matchId: String
+    teams: [Team]
     next_match: [Match]
+    winner: String
+    matchNumber: Int
   }
   type User {
     _id: ID
@@ -45,7 +48,8 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!): Auth
     addTournament(tournament_name: String!): Tournament
-    deleteTournament(_id: ID!): Tournament
+    addMatch(tournamentId: ID!, matchId: String!): Tournament
+    deleteTournament(tournament_name: String!): Tournament
     addTeam(tournamentId: ID!, team_name: String!): Tournament
     addWinner(tournamentId: ID!, winner: String!): Tournament
   }
